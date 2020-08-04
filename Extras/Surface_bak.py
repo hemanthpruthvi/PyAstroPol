@@ -27,7 +27,7 @@ class Surface():
     IncidentPoints : Float(N,3) : Points on the surface corresponding to incidence of Rays
     nCosines : Float(N,3) : DC of the normals to the surface at the points of ray incidences 
     tCosines : Float(N,3) : DC of the tangents to the surface at the points of ray incidences
-    Mask : Bool(N,1) : Array representing whether given rays are hitting the surface or not
+    RayMask : Bool(N,1) : Array representing whether given rays are hitting the surface or not
     
     // Attributes : Polarization
     sCosines : Float(N,3) :  DC of the s-polarization direction to the surface for the Rays
@@ -58,10 +58,10 @@ class Surface():
         self.Aperture = Dia
         self.Mirror = Mirror
         self.InnerDia = iDia
-        self.Origin = np.array([0.0,0.0,0.0])
-        self.xAxis = np.array([1.0,0.0,0.0])
-        self.yAxis = np.array([0.0,1.0,0.0])
-        self.oAxis = np.array([0.0,0.0,1.0])
+        self.Origin = np.matrix([[0.0],[0.0],[0.0],[1.0]])
+        self.oAxis = np.matrix([[0.0],[0.0],[1.0],[0.0]])
+        self.xAxis = np.matrix([[1.0],[0.0],[0.0],[0.0]])
+        self.yAxis = np.matrix([[0.0],[1.0],[0.0],[0.0]])
         self.Conic, self.Curvature = K, R
         self.SurfaceMatrix = np.matrix([[1.0/R, 0.0, 0.0, 0.0],
                                         [0.0, 1.0/R, 0.0, 0.0],
@@ -69,7 +69,7 @@ class Surface():
                                         [0.0, 0.0, 0.0, 0.0]])
         
         self.X, self.Y, self.Z = 0.0, 0.0, 0.0
-        self.IncidentPoints = np.array([[0.0,0.0,0.0]])
+        self.IncidentPoints = np.matrix([[0.0],[0.0],[0.0],[1.0]])
         # Special things to do in case of off-axis surfaces
         if (OffAxis):
             if (self.Conic == 0 or self.Curvature == np.inf):
@@ -86,7 +86,7 @@ class Surface():
                 if (self.Conic == -1):
                     Z = OffAxDist**2/self.Curvature/2.0
                 else:
-                    Z = (R - (R/np.abs(R))*np.sqrt(R**2-(K+1.0)*OffAxDist**2))/(K+1.0)
+                    Z = (R + np.sqrt(R**2-(K+1.0)*OffAxDist**2))/(K+1.0)
                 OldOrigin = np.copy(self.Origin)
                 NewOrigin = -X*np.array(self.xAxis).flatten() \
                             -Y*np.array(self.yAxis).flatten() \
@@ -99,12 +99,12 @@ class Surface():
             self.OffAxisAzimuth = 0.0
             
         #
-        self.renderSurface(5, 13)
+        self.renderSurface(10, 16)
         
     # Create points to render surface
     def renderSurface(self, rRes, thetaRes):
         self.rRes, self.thetaRes = np.copy(rRes), np.copy(thetaRes)
-        r = np.linspace(self.InnerDia/2.0, self.Aperture/2.0, rRes)
+        r = np.linspace(self.InnerDia, self.Aperture/2.0, rRes)
         theta = np.linspace(0, 2*np.pi, thetaRes)
         rMat, thetaMat = np.meshgrid(r,theta)
         x, y = rMat*np.cos(thetaMat), rMat*np.sin(thetaMat)
@@ -125,26 +125,15 @@ class Surface():
         return
     # Apply rotation and translation to equation of surface and points on it
     def applyTransformation(self, M):
-        #
-        self.SurfaceMatrix = np.transpose(np.linalg.inv(M))*self.SurfaceMatrix*np.linalg.inv(M)
-        # self.SurfaceMatrix[3,0:3], self.SurfaceMatrix[3,3] = 0.0, 1.0
-
-        #
         x, y, z = np.copy(self.X), np.copy(self.Y), np.copy(self.Z)
+        self.SurfaceMatrix = np.transpose(np.linalg.inv(M))*self.SurfaceMatrix*np.linalg.inv(M)
         self.X = M[0,0]*x + M[0,1]*y + M[0,2]*z + M[0,3]
         self.Y = M[1,0]*x + M[1,1]*y + M[1,2]*z + M[1,3]
         self.Z = M[2,0]*x + M[2,1]*y + M[2,2]*z + M[2,3]
-        #
-        self.Origin = applyPointTransformation(self.Origin, M)
-        self.IncidentPoints = applyPointTransformation(self.IncidentPoints, M)
-        #
-        self.oAxis = applyVectorTransformation(self.oAxis, M)
-        self.xAxis = applyVectorTransformation(self.xAxis, M)
-        self.yAxis = applyVectorTransformation(self.yAxis, M)
-        #
-        self.oAxis = normalize3DVectors(self.oAxis)
-        self.xAxis = normalize3DVectors(self.xAxis)
-        self.yAxis = normalize3DVectors(self.yAxis)
+        self.Origin = M*self.Origin
+        self.oAxis = M*self.oAxis
+        self.xAxis = M*self.xAxis
+        self.yAxis = M*self.yAxis
         return
 
 
@@ -195,12 +184,11 @@ class Surface():
         self.rotateAboutX(np.degrees(ThetaX))
         return
     #
-    def makeOrigin(self, NewOrigin):
-        O, NO = self.Origin, NewOrigin
-        self.translateOrigin(x=-O[0], y=-O[1], z=-O[2])
-        self.translateOrigin(x=NO[0], y=NO[1], z=NO[2])
-        return
+    # def makeOrigin(self, NewOrigin):
+
         
+        
+    
     # Compute points of incidence on the surface
     def computeIncidence(self, Rays):
         C = np.matrix(self.SurfaceMatrix)
@@ -213,14 +201,14 @@ class Surface():
         a = np.sum(np.array(I)*np.array(C*I), axis=0)
         b = np.sum(np.array(I)*np.array(C*X0), axis=0) + np.sum(np.array(X0)*np.array(C*I), axis=0) 
         c = np.sum(np.array(X0)*np.array(C*X0), axis=0)
-        self.A, self.B, self.C = a, b, c
-        self.I, self.X0 = I, X0
+        # self.A, self.B, self.C = a, b, c
+        # self.I, self.X0 = I, X0
         dnan_replace = -c/b
         dplus = (-b+np.sqrt(b**2-4.0*a*c))/2.0/a
         dminus = (-b-np.sqrt(b**2-4.0*a*c))/2.0/a
-        dmask = np.isclose(a, EPS)
-        dplus = np.nan_to_num(dplus) + np.nan_to_num(dmask*dnan_replace)
-        dminus = np.nan_to_num(dminus) + np.nan_to_num(dmask*dnan_replace)
+        dplus_mask, dminus_mask = np.isnan(dplus), np.isnan(dminus)
+        dplus = np.nan_to_num(dplus, 0) + dplus_mask*dnan_replace
+        dminus = np.nan_to_num(dminus, 0) + dminus_mask*dnan_replace 
         if (dminus[0] < 0 and dplus[0] < 0):
             print('Error! Verify direction of propagation!')
             self.IncidentPoints += np.nan
@@ -236,21 +224,20 @@ class Surface():
                 d = np.copy(dminus)
             else:
                 d = np.copy(dplus)
-        self.DPLUS, self.DMINUS = dplus, dminus
-        self.DNAN, self.DPMASK = dnan_replace, dmask
-        self.D = d
-        self.IncidentPoints = np.transpose((np.array(X0) + np.array(I)*d)[0:3,:])
-        OriginDistance = np.sqrt(np.sum(np.array(self.IncidentPoints[0,:].flatten()-self.Origin.flatten())**2))
+        self.IncidentPoints = np.array(X0) + np.array(I)*d
+        OriginDistance = np.sqrt(np.sum(np.array(self.IncidentPoints[0:3,0].flatten()-self.Origin[0:3,0].flatten())**2))
         if (OriginDistance > self.Aperture/2.0) : 
             print('Error! Rays are not hitting the surface!', 'Chief rays incidence : ', OriginDistance)
             #self.IncidentPoints += np.nan
             return
-        self.rRays.Points = self.IncidentPoints
-        self.rRays.Origin = self.rRays.Points[0,:]
-        self.tRays.Points = self.IncidentPoints
-        self.tRays.Origin = self.tRays.Points[0,:]
+        self.rRays.Points = np.transpose(self.IncidentPoints[0:3,:])
+        self.rRays.Origin = np.copy(self.rRays.Points[0,:])
+        self.tRays.Points = np.transpose(self.IncidentPoints[0:3,:])
+        self.tRays.Origin = np.copy(self.rRays.Points[0,:])
         # Create a mark to check if the rays are hitting the surface aperture
-        d = np.linalg.norm(np.cross(self.rRays.Points-self.Origin, self.oAxis), axis=1)
+        d = np.cross((self.rRays.Points-self.Origin[0:3].flatten()), self.oAxis[0:3].flatten())
+        d = np.linalg.norm(d, axis=1)
+        self.D = d
         self.rRays.Mask = ((d<=self.Aperture/2.0) & (d>=self.InnerDia/2.0)).reshape((self.rRays.NRays, 1))
         self.rRays.Mask = self.iRays.Mask & self.rRays.Mask
         self.tRays.Mask = np.copy(self.rRays.Mask)
@@ -265,22 +252,14 @@ class Surface():
         SY = GY*C + GY*np.transpose(C)
         SZ = GZ*C + GZ*np.transpose(C)
         nCosines = np.zeros([self.iRays.NRays, 3])
-        self.SX, self.SY, self.SZ = SX, SY, SZ
-        nCosines[:,0] = SX[0,0]*self.IncidentPoints[:,0] + \
-                        SX[0,1]*self.IncidentPoints[:,1] + \
-                        SX[0,2]*self.IncidentPoints[:,2] + SX[0,3]
-        nCosines[:,1] = SY[0,0]*self.IncidentPoints[:,0] + \
-                        SY[0,1]*self.IncidentPoints[:,1] + \
-                        SY[0,2]*self.IncidentPoints[:,2] + SY[0,3]
-        nCosines[:,2] = SZ[0,0]*self.IncidentPoints[:,0] + \
-                        SZ[0,1]*self.IncidentPoints[:,1] + \
-                        SZ[0,2]*self.IncidentPoints[:,2] + SZ[0,3]
+        nCosines[:,0] = np.array(SX*self.IncidentPoints)
+        nCosines[:,1] = np.array(SY*self.IncidentPoints)
+        nCosines[:,2] = np.array(SZ*self.IncidentPoints)
         self.nCosines = normalize3DVectors(nCosines)
         if (dot3DVectors(self.nCosines[0,:], -self.iRays.oCosines[0,:]) < 0):
             self.nCosines *= -1.0
         # Tangents
         self.iTheta = np.arccos(dot3DVectors(self.nCosines, -self.iRays.oCosines))
-        self.iTheta = np.nan_to_num(self.iTheta)
         tCosines = (self.iRays.oCosines + self.nCosines*np.cos(self.iTheta))/np.sin(self.iTheta)
         self.tCosines = np.nan_to_num(tCosines)
         # s-Polarization
@@ -334,27 +313,13 @@ class Surface():
         self.rRays.Ey = -Es_r*np.sin(np.pi+Theta) + Ep_r*np.cos(np.pi+Theta)
         self.rRays.xCosines =  self.sCosines*np.cos(np.pi+Theta) + self.pCosines_r*np.sin(np.pi+Theta)
         self.rRays.yCosines = -self.sCosines*np.sin(np.pi+Theta) + self.pCosines_r*np.cos(np.pi+Theta)
-        self.rRays.xAxis = self.rRays.xCosines[0,:]
-        self.rRays.yAxis = self.rRays.yCosines[0,:]
-        self.rRays.oAxis = self.rRays.oCosines[0,:]
         # Transmission
         Es_t, Ep_t = Es*self.ts, Ep*self.tp
         self.tRays.Ex =  Es_t*np.cos(-Theta) + Ep_t*np.sin(-Theta)
         self.tRays.Ey = -Es_t*np.sin(-Theta) + Ep_t*np.cos(-Theta)
         self.tRays.xCosines =  self.sCosines*np.cos(-Theta) + self.pCosines_t*np.sin(-Theta)
         self.tRays.yCosines = -self.sCosines*np.sin(-Theta) + self.pCosines_t*np.cos(-Theta)
-        self.tRays.xAxis = self.tRays.xCosines[0,:]
-        self.tRays.yAxis = self.tRays.yCosines[0,:]
-        self.tRays.oAxis = self.tRays.oCosines[0,:]
         return
-    # Coating
-    def applyCoating(self, Coat):
-        Coat.applyToSurface(self)
-        self.rs, self.ts = np.copy(Coat.rs), np.copy(Coat.ts)
-        self.rp, self.tp = np.copy(Coat.rp), np.copy(Coat.tp)
-        return
-
-
     def propagateRays(self, Rays):
         self.computeIncidence(Rays)
         self.computeNormals()

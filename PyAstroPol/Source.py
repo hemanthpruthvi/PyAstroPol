@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from datetime import datetime as dt
 #
-from .Polarization import *
+from .Functions import *
 #
 
 class Rays():
@@ -49,6 +49,7 @@ class Rays():
         self.yCosines = np.reshape(np.tile(self.yAxis, N), newshape=(N,3))
         self.oCosines = np.reshape(np.tile(self.oAxis, N), newshape=(N,3))
         #
+        self.Mask = np.ones((N,1), dtype=bool)
         self.createPolarization(1.0+0.0j, 0.0+0.0j)
         self.Wavelength = 0.6328
         return
@@ -84,7 +85,14 @@ class Rays():
         Ax.set_aspect('equal')
         Ax.scatter(x, y, **kwargs)
         return
-
+    # 
+    def getStokesVector(self):
+        Ex, Ey = np.sum(self.Ex*self.Mask), np.sum(self.Ey*self.Mask)
+        I = np.real(Ex*np.conjugate(Ex) + Ey*np.conjugate(Ey))
+        Q = np.real(Ex*np.conjugate(Ex) - Ey*np.conjugate(Ey))
+        U = np.real(Ex*np.conjugate(Ey) + Ey*np.conjugate(Ex))
+        V = np.real(1j*(Ey*np.conjugate(Ex) - Ex*np.conjugate(Ey)))
+        return np.matrix([[np.real(1.0)],[np.real(Q/I)],[np.real(U/I)],[np.real(V/I)]]), I/np.sum(self.Mask)**2
     
 class Source(Rays):
     """
@@ -96,7 +104,7 @@ class Source(Rays):
     Clear : Float : Clear aperture for the distribution of rays, only used in collimated sources
     Random : Bool : Ray distrbution, if not True rays are distributed in ring fashion with quasi-uniform density
     """
-    def __init__(self, NRays, Type='collimated', Clear=1.0, FNum=1.0, Random=False):
+    def __init__(self, NRays, Type='Collimated', Clear=1.0, FNum=1.0, Random=False):
         Rays.__init__(self, NRays)
         self.Type = np.copy(Type)
         self.Random = np.copy(Random)
@@ -130,7 +138,7 @@ class Source(Rays):
         self.Thetas = Thetas
 
         # Point sources
-        if (self.Type == 'point'):
+        if (self.Type == 'Point'):
             # make vectorial addition of oAxis unit vector and vector for rings
             Radii = np.array(np.transpose([np.array(Radii)*1.0/FNum]))
             Thetas = np.array(np.transpose([Thetas]))
@@ -142,14 +150,19 @@ class Source(Rays):
             self.HalfConeAngle = np.degrees(np.arccos(np.sum(self.oCosines*self.oAxis, axis=1).min()))
 
         # Collimated sources
-        else :
+        elif (self.Type == 'Collimated'):
             # Repeat the oCosines 
             Radii = np.array(np.transpose([Clear*np.array(Radii)]))
             Thetas = np.array(np.transpose([Thetas]))
             #
             self.Points[1::,:] = self.xAxis*Radii*np.cos(Thetas) + self.yAxis*Radii*np.sin(Thetas)
             self.oCosines[1::,:] = np.reshape(np.tile(self.oAxis, NRays-1), newshape=(NRays-1, 3))
-            
+        
+        #Other keywords
+        else:
+            print('Error! Invalid source type! \n Use either "Point" or "Collimated" (default) !')
+            return
+        
         # Now turn for s- and p- polarization axes
         xAxes = np.cross(self.yAxis, self.oCosines)
         self.xCosines = normalize3DVectors(xAxes)
@@ -159,65 +172,28 @@ class Source(Rays):
     # Apply rotation and translation for all points and directions
     def applyTransformation(self, M):
         #
-        temp = np.copy(self.Points)
-        x, y, z = np.copy(temp[:,0]), np.copy(temp[:,1]), np.copy(temp[:,2])
-        temp[:,0] = M[0,0]*x + M[0,1]*y + M[0,2]*z + M[0,3]
-        temp[:,1] = M[1,0]*x + M[1,1]*y + M[1,2]*z + M[1,3]
-        temp[:,2] = M[2,0]*x + M[2,1]*y + M[2,2]*z + M[2,3]
-        self.Points = np.copy(temp)
+        self.Origin = applyPointTransformation(self.Origin, M)
+        self.Points = applyPointTransformation(self.Points, M)
         #
-        temp = np.copy(self.oCosines)
-        x, y, z = np.copy(temp[:,0]), np.copy(temp[:,1]), np.copy(temp[:,2])
-        temp[:,0] = M[0,0]*x + M[0,1]*y + M[0,2]*z
-        temp[:,1] = M[1,0]*x + M[1,1]*y + M[1,2]*z
-        temp[:,2] = M[2,0]*x + M[2,1]*y + M[2,2]*z
-        self.oCosines = normalize3DVectors(temp)
+        self.oAxis = applyVectorTransformation(self.oAxis, M)
+        self.xAxis = applyVectorTransformation(self.xAxis, M)
+        self.yAxis = applyVectorTransformation(self.yAxis, M)
+        self.oCosines = applyVectorTransformation(self.oCosines, M)
+        self.xCosines = applyVectorTransformation(self.xCosines, M)
+        self.yCosines = applyVectorTransformation(self.yCosines, M)
         #
-        temp = np.copy(self.xCosines)
-        x, y, z = np.copy(temp[:,0]), np.copy(temp[:,1]), np.copy(temp[:,2])
-        temp[:,0] = M[0,0]*x + M[0,1]*y + M[0,2]*z
-        temp[:,1] = M[1,0]*x + M[1,1]*y + M[1,2]*z
-        temp[:,2] = M[2,0]*x + M[2,1]*y + M[2,2]*z
-        self.xCosines = normalize3DVectors(temp)
-        #
-        temp = np.copy(self.yCosines)
-        x, y, z = np.copy(temp[:,0]), np.copy(temp[:,1]), np.copy(temp[:,2])
-        temp[:,0] = M[0,0]*x + M[0,1]*y + M[0,2]*z
-        temp[:,1] = M[1,0]*x + M[1,1]*y + M[1,2]*z
-        temp[:,2] = M[2,0]*x + M[2,1]*y + M[2,2]*z
-        self.yCosines = normalize3DVectors(temp)
-        #
-        temp = np.copy(self.Origin)
-        x, y, z = np.copy(temp[0]), np.copy(temp[1]), np.copy(temp[2])
-        temp[0] = M[0,0]*x + M[0,1]*y + M[0,2]*z + M[0,3]
-        temp[1] = M[1,0]*x + M[1,1]*y + M[1,2]*z + M[1,3]
-        temp[2] = M[2,0]*x + M[2,1]*y + M[2,2]*z + M[2,3]
-        self.Origin = np.copy(temp)
-        #
-        temp = np.copy(self.oAxis)
-        x, y, z = np.copy(temp[0]), np.copy(temp[1]), np.copy(temp[2])
-        temp[0] = M[0,0]*x + M[0,1]*y + M[0,2]*z
-        temp[1] = M[1,0]*x + M[1,1]*y + M[1,2]*z
-        temp[2] = M[2,0]*x + M[2,1]*y + M[2,2]*z
-        self.oAxis = normalize3DVectors(temp)
-        #
-        temp = np.copy(self.xAxis)
-        x, y, z = np.copy(temp[0]), np.copy(temp[1]), np.copy(temp[2])
-        temp[0] = M[0,0]*x + M[0,1]*y + M[0,2]*z
-        temp[1] = M[1,0]*x + M[1,1]*y + M[1,2]*z
-        temp[2] = M[2,0]*x + M[2,1]*y + M[2,2]*z
-        self.xAxis = normalize3DVectors(temp)
-        #
-        temp = np.copy(self.yAxis)
-        x, y, z = np.copy(temp[0]), np.copy(temp[1]), np.copy(temp[2])
-        temp[0] = M[0,0]*x + M[0,1]*y + M[0,2]*z
-        temp[1] = M[1,0]*x + M[1,1]*y + M[1,2]*z
-        temp[2] = M[2,0]*x + M[2,1]*y + M[2,2]*z
-        self.yAxis = normalize3DVectors(temp)
+        self.oAxis = normalize3DVectors(self.oAxis)
+        self.xAxis = normalize3DVectors(self.xAxis)
+        self.yAxis = normalize3DVectors(self.yAxis)
+        self.oCosines = normalize3DVectors(self.oCosines)
+        self.xCosines = normalize3DVectors(self.xCosines)
+        self.yCosines = normalize3DVectors(self.yCosines)
         return
 
     # Rotation matrices for the function
     def rotateAboutX(self, ThetaX):
+
+
         ThetaX = np.radians(ThetaX)
         R = np.matrix([[1.0, 0.0, 0.0, 0.0],
                        [0.0, np.cos(ThetaX), -np.sin(ThetaX), 0.0], 
@@ -241,7 +217,6 @@ class Source(Rays):
                        [0.0, 0.0, 0.0, 1.0]])
         self.applyTransformation(R)
         return
-
     # Translation matrix for the function
     def translateOrigin(self, x=0.0, y=0.0, z=0.0):
         T = np.matrix([[1.0, 0.0, 0.0, x],
@@ -250,3 +225,78 @@ class Source(Rays):
                        [0.0, 0.0, 0.0, 1.0]])
         self.applyTransformation(T)
         return
+    #
+    def pointToDirection(self, NewNormal):
+        OldNormal = np.copy(self.oAxis)
+        ThetaY = np.arcsin(OldNormal[0])
+        ThetaX = np.arctan2(-OldNormal[1]/np.cos(ThetaY), OldNormal[2]/np.cos(ThetaY))
+        self.rotateAboutX(np.degrees(-ThetaX))
+        self.rotateAboutY(np.degrees(-ThetaY))
+        #
+        ThetaY = np.arcsin(NewNormal[0])
+        ThetaX = np.arctan2(-NewNormal[1]/np.cos(ThetaY), NewNormal[2]/np.cos(ThetaY))
+        self.rotateAboutY(np.degrees(ThetaY))
+        self.rotateAboutX(np.degrees(ThetaX))
+        return
+    #
+    def makeOrigin(self, NewOrigin):
+        O, NO = self.Origin, NewOrigin
+        self.translateOrigin(x=-O[0], y=-O[1], z=-O[2])
+        self.translateOrigin(x=NO[0], y=NO[1], z=NO[2])
+        return
+
+class AstroSource(Source):
+    #
+    def __init__ (self, NRays, HA=0.0, Dec=0.0, Lat=30.0, Clear=1.0, Dist=1000.0):
+        Source.__init__(self, NRays, Type='Collimated', Clear=Clear, Random=False)
+        self.Type = 'Collimated'
+        self.Aperture = Clear
+        self.HourAngle = HA
+        self.Declination = Dec
+        self.Latitude = Lat
+        self.Distance = Dist
+        #
+        HA, Dec, Lat = np.radians(HA), np.radians(Dec), np.radians(Lat)
+        Position = np.array([np.sin(HA)*np.cos(Dec), 
+                             np.cos(HA)*np.cos(Dec)*np.cos(Lat) + np.sin(Dec)*np.sin(Lat), 
+                             -np.cos(HA)*np.cos(Dec)*np.sin(Lat) + np.sin(Dec)*np.cos(Lat)])
+        ThetaY = np.arcsin(-Position[0])
+        ThetaX = np.arctan2(Position[1]/np.cos(ThetaY), -Position[2]/np.cos(ThetaY))
+        #
+        self.ThetaY, self.ThetaX = np.degrees(ThetaY), np.degrees(ThetaX)
+        self.rotateAboutY(self.ThetaY)
+        self.rotateAboutX(self.ThetaX)
+        #
+        self.translateOrigin(x=-Dist*self.oAxis[0], y=-Dist*self.oAxis[1], z=-Dist*self.oAxis[2])
+        return
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

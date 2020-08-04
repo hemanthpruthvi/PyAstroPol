@@ -7,23 +7,76 @@ from datetime import datetime as dt
 #
 from .Source import *
 from .Surface import *
+from .Functions import *
 #
-
-class CoatedMirror(Surface):
-    def __ini__(self, Dia, **kwargs):
-        Surface.__init__(self, Dia, **kwargs)
-        Surface.Mirror = True
+   
+class Detector(Surface):
+    def __init__(self, Dia):
+        Surface.__init__(self, Dia)
+        self.Mirror = False
         return
-    
-    def applyCoating(self, Coat):
-        Coat.applyToSurface(self)
-        self.rs, self.ts = np.copy(Coat.rs), np.copy(Coat.ts)
-        self.rp, self.tp = np.copy(Coat.rp), np.copy(Coat.tp)
-        return
-    
-    
+        
 class UncoatedLens():
     def __init__(self, Dia, Thick, R1=np.inf, R2=np.inf, K1=0.0, K2=0.0, n=1.5+0.0j):
         self.S1 = Surface(Dia, R=R1, K=K1, n1=1.0+0.0j, n2=n)
         self.S2 = Surface(Dia, R=R2, K=K2, n1=n, n2=1.0+0.0j)
-        S2.translateOrigin(z=Thick)
+        self.S2.translateOrigin(z=Thick)
+        self.S1.rRes = self.S2.rRes
+        self.S1.thetaRes = self.S2.thetaRes
+        self.Mirror = False
+        return
+    
+    def propagateRays(self, Rays):
+        self.iRays = cp.copy(Rays)
+        self.S1.propagateRays(Rays)
+        self.S2.propagateRays(self.S1.tRays)
+        self.rRays = self.S1.rRays
+        self.tRays = self.S2.tRays
+        return
+    
+    def rotateAboutX(self, ThetaX):
+        self.S1.rotateAboutX(ThetaX)
+        self.S2.rotateAboutX(ThetaX)
+        return
+    def rotateAboutX(self, ThetaY):
+        self.S1.rotateAboutY(ThetaY)
+        self.S2.rotateAboutY(ThetaY)
+        return
+    def rotateAboutX(self, ThetaZ):
+        self.S1.rotateAboutZ(ThetaZ)
+        self.S2.rotateAboutZ(ThetaZ)
+        return
+    
+    def translateOrigin(self, x=0.0, y=0.0, z=0.0):
+        self.S1.translateOrigin(x=x, y=y, z=z)
+        self.S2.translateOrigin(x=x, y=y, z=z)
+        return
+    
+    def draw(self, Ax, **kwargs):
+        x1temp = np.reshape(self.S1.X, newshape=(self.S1.thetaRes, self.S1.rRes))[:,-1]
+        y1temp = np.reshape(self.S1.Y, newshape=(self.S1.thetaRes, self.S1.rRes))[:,-1]
+        z1temp = np.reshape(self.S1.Z, newshape=(self.S1.thetaRes, self.S1.rRes))[:,-1]
+        x2temp = np.reshape(self.S2.X, newshape=(self.S2.thetaRes, self.S2.rRes))[:,-1]
+        y2temp = np.reshape(self.S2.Y, newshape=(self.S2.thetaRes, self.S2.rRes))[:,-1]
+        z2temp = np.reshape(self.S2.Z, newshape=(self.S2.thetaRes, self.S2.rRes))[:,-1]
+        x, y, z = [], [], []
+        for i in range(self.S1.thetaRes):
+            x.append(x1temp[i])
+            x.append(x2temp[i])
+            y.append(y1temp[i])
+            y.append(y2temp[i])
+            z.append(z1temp[i])
+            z.append(z2temp[i])
+        x = np.array(x).reshape((self.S1.thetaRes,2))
+        y = np.array(y).reshape((self.S1.thetaRes,2))
+        z = np.array(z).reshape((self.S1.thetaRes,2))
+        Ax.plot_surface(x, y, z, antialiased=True, **kwargs)
+        #
+        self.S1.draw(Ax, **kwargs)
+        self.S2.draw(Ax, **kwargs)
+        return
+    
+    def drawRays(self, Ax, **kwargs):
+        self.S1.drawRays(Ax, **kwargs)
+        self.S2.drawRays(Ax, **kwargs)
+        return
