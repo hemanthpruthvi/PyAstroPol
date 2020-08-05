@@ -15,57 +15,39 @@ from .Functions import *
 
 class System():
     """
-    Source : Source() : Source
-    Components : Surface(N) : Surface/Lens/Component
+    Source : Source() : Source for analysis purposes
+    Components : N x Surface() : Surface/Lens/Component
     Detector : Detector() : Detector
-    dRays : Source()
-    #
-    Polarimetry to compute Mueller matrix
+    dRays : Source() : Source for display puposes
+    
+    // Polarimetry to compute Mueller matrix
+    
+    Four minimum Stokes inputs :
     In_1 : [1,  1, 0, 0],  Ex_1 = 1.0 + 0.0j,  Ey_1 = 0.0 + 0.0j
     In_2 : [1, -1, 0, 0],  Ex_1 = 0.0 + 0.0j,  Ey_1 = 1.0 + 0.0j
     In_3 : [1,  0, 1, 0],  Ex_1 = 0.707 + 0.0j,  Ey_1 = 0.707 + 0.0j
     In_4 : [1,  0, 0, 1],  Ex_1 = 0.707 + 0.0j,  Ey_1 = 0.0 - 0.707j
-    #
+    
+    Four Stokes outputs as linear combination of Mueller matrix elements :
     Out_1 : [M_00+M_10, M_01+M_11, M_02+M_12, M_03+M_13]
     Out_2 : [M_00-M_10, M_01-M_11, M_02-M_12, M_03-M_13]
     Out_3 : [M_00+M_20, M_01+M_21, M_02+M_22, M_03+M_23]
     Out_4 : [M_00+M_30, M_01+M_31, M_02+M_32, M_03+M_33]
-    #
+    
+    System Mueller matrix elements : 
     [M_00, M_01, M_02, M_03] = 0.5*(Out_1 + Out_2)
     [M_10, M_11, M_12, M_13] = 0.5*(Out_1 - Out_2)
     [M_20, M_21, M_22, M_23] = Out_3 - 0.5*(Out_1 + Out_2)
     [M_30, M_31, M_32, M_33] = Out_4 - 0.5*(Out_1 + Out_2)
     """
-    def __init__(self, Source, Components, Detector, dRays=Source):
-        self.Source = Source
-        self.Components = Components
-        self.Detector = Detector
-        self.DisplayRays = dRays
-        return
- 
-    # Draw
-    def draw(self, Ax):
-        Source = cp.copy(self.DisplayRays)
-        Components = cp.copy(self.Components)
-        Detector = cp.copy(self.Detector) 
-        #
-        Components[0].propagateRays(Source)
-        for i in range(len(Components)-1):
-            if (Components[i].Mirror):
-                Components[i+1].propagateRays(Components[i].rRays)
-            else:
-                Components[i+1].propagateRays(Components[i].tRays)
-        if (Components[-1].Mirror):
-            Detector.propagateRays(Components[-1].rRays)
-        else:
-            Detector.propagateRays(Components[-1].tRays)
-        #
-        Ax.clear()
-        for Component in Components:
-            Component.draw(Ax, color='r', alpha=0.5)
-            Component.drawRays(Ax, color='k', alpha=0.7)
-        Detector.draw(Ax, color='r', alpha=0.5)
-        Detector.drawRays(Ax, color='k', alpha=0.7)
+    def __init__(self, Source, Components, Detector, dRays=None):
+        self.Source = cp.copy(Source)
+        self.Components = cp.copy(Components)
+        self.Detector = cp.copy(Detector)
+        if (dRays == None) : 
+            self.DisplayRays = cp.copy(Source)
+        else :
+            self.DisplayRays = cp.copy(dRays)
         return
     
     # Propagate rays
@@ -81,7 +63,6 @@ class System():
         else:
             self.Detector.propagateRays(self.Components[-1].tRays)
         return        
-    
     # Polarimeter
     def getSystemMuellerMatrix(self):
         Source, Components = self.Source, self.Components
@@ -118,7 +99,34 @@ class System():
         self.M = M
         return MNorm, M[0,0]/np.float(Source.NRays)**2
         
-        
+    # Draw
+    def draw(self, Ax, clear=False):
+        Source = cp.copy(self.DisplayRays)
+        Components = cp.copy(self.Components)
+        Detector = cp.copy(self.Detector) 
+        #
+        Components[0].propagateRays(Source)
+        for i in range(len(Components)-1):
+            if (Components[i].Mirror):
+                Components[i+1].propagateRays(Components[i].rRays)
+            else:
+                Components[i+1].propagateRays(Components[i].tRays)
+        if (Components[-1].Mirror):
+            Detector.propagateRays(Components[-1].rRays)
+        else:
+            Detector.propagateRays(Components[-1].tRays)
+        #
+        if (clear) : Ax.clear()
+        for Component in Components:
+            Component.draw(Ax, color='r', alpha=0.5)
+            Component.drawRays(Ax, color='k', alpha=0.7)
+        Detector.draw(Ax, color='r', alpha=0.5)
+        Detector.drawRays(Ax, color='k', alpha=0.7)
+        return
+    # Draw spot diagram as seen on the detector
+    def drawSpotDiagram(self, Ax, **kwargs):
+        self.Detector.tRays.drawSpotDiagram(Ax, 0, **kwargs)
+        return
         
         
         

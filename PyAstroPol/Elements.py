@@ -11,12 +11,23 @@ from .Functions import *
 #
    
 class Detector(Surface):
+    """
+    Plane surface with no special attributes
+    Created for the purposes of easy selection
+    """
     def __init__(self, Dia):
         Surface.__init__(self, Dia)
         self.Mirror = False
         return
         
 class UncoatedLens():
+    """
+    A simple singlet lens containing two uncoated surfaces
+    // Attributes: General
+    S1 : Surface() : Front surface
+    S2 : Surface() : Back surface
+    Thick : Float : Thickness of the lens (redundant)
+    """
     def __init__(self, Dia, Thick, R1=np.inf, R2=np.inf, K1=0.0, K2=0.0, n=1.5+0.0j):
         self.S1 = Surface(Dia, R=R1, K=K1, n1=1.0+0.0j, n2=n)
         self.S2 = Surface(Dia, R=R2, K=K2, n1=n, n2=1.0+0.0j)
@@ -24,6 +35,7 @@ class UncoatedLens():
         self.S1.rRes = self.S2.rRes
         self.S1.thetaRes = self.S2.thetaRes
         self.Mirror = False
+        self.Thick = Thick
         return
     
     def propagateRays(self, Rays):

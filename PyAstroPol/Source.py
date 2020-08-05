@@ -192,8 +192,6 @@ class Source(Rays):
 
     # Rotation matrices for the function
     def rotateAboutX(self, ThetaX):
-
-
         ThetaX = np.radians(ThetaX)
         R = np.matrix([[1.0, 0.0, 0.0, 0.0],
                        [0.0, np.cos(ThetaX), -np.sin(ThetaX), 0.0], 

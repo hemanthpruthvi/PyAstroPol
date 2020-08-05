@@ -23,7 +23,7 @@ class Surface():
     tRI : FloatComplex : Refrative index of the transmitting medium
     iMU : FloatComplex : Magnetic permeability of the incident medium
     tMU : FloatComplex : Magnetic permeability of the transmitting medium
-    Mirrored : Bool : Is it only reflecting or only transmitting?
+    Mirror : Bool : Is it only reflecting or only transmitting?
     IncidentPoints : Float(N,3) : Points on the surface corresponding to incidence of Rays
     nCosines : Float(N,3) : DC of the normals to the surface at the points of ray incidences 
     tCosines : Float(N,3) : DC of the tangents to the surface at the points of ray incidences
@@ -46,7 +46,6 @@ class Surface():
     
     // Attributes : Only for drawing
     X, Y, Z : Float(N,1) : Coordinates of the points on the surface used for rendering the surface
-    
     """
     def __init__(self, Dia, R=np.inf, K=0, Mirror=False, iDia=0.0,
                  OffAxis=False, OffAxDist=0.0, OffAxAz=0.0, 

@@ -45,45 +45,45 @@ def adjustAspect(Ax, L, x=0.0, y=0.0, z=0.0):
     Ax.set_zlim([z-L/2.0, z+L/2.0])
     return
 
-# Rotation angles about Y and X axes (in that order) to rotate "Z" axis to V 
+# Rotation angles about Y and X axes (in that order) to rotate "Z" vector to "V" vector 
 def vectorToAngles(V):
     ThetaY = np.arcsin(V[0])
     ThetaX = np.arctan2(-V[1]/np.cos(ThetaY), V[2]/np.cos(ThetaY))
     return np.degrees(ThetaY), np.degrees(ThetaX)
 
 #  X-rotation matrix
-def rotateAboutX(ThetaX):
+def getXRotationMatrix(ThetaX):
     ThetaX = np.radians(ThetaX)
     R = np.matrix([[1.0, 0.0, 0.0, 0.0],
-                    [0.0, np.cos(ThetaX), -np.sin(ThetaX), 0.0], 
-                    [0.0, np.sin(ThetaX),  np.cos(ThetaX), 0.0],
-                    [0.0, 0.0, 0.0, 1.0]])
+                   [0.0, np.cos(ThetaX), -np.sin(ThetaX), 0.0], 
+                   [0.0, np.sin(ThetaX),  np.cos(ThetaX), 0.0],
+                   [0.0, 0.0, 0.0, 1.0]])
     return R
 
 # Y-rotation matrix
-def rotateAboutY(ThetaY):
+def getYRotationMatrix(ThetaY):
     ThetaY = np.radians(ThetaY)
     R = np.matrix([[ np.cos(ThetaY), 0.0, np.sin(ThetaY), 0.0],
-                    [0.0, 1.0, 0.0, 0.0],
-                    [-np.sin(ThetaY), 0.0, np.cos(ThetaY), 0.0],
-                    [0.0, 0.0, 0.0, 1.0]])
+                   [0.0, 1.0, 0.0, 0.0],
+                   [-np.sin(ThetaY), 0.0, np.cos(ThetaY), 0.0],
+                   [0.0, 0.0, 0.0, 1.0]])
     return R
 
 #  Z-rotation matrix
-def rotateAboutZ(ThetaZ):
+def getZRotationMatrix(ThetaZ):
     ThetaZ = np.radians(ThetaZ)
     R = np.matrix([[np.cos(ThetaZ), -np.sin(ThetaZ), 0.0, 0.0],
-                    [np.sin(ThetaZ),  np.cos(ThetaZ), 0.0, 0.0],
-                    [0.0, 0.0, 1.0, 0.0],
-                    [0.0, 0.0, 0.0, 1.0]])
+                   [np.sin(ThetaZ),  np.cos(ThetaZ), 0.0, 0.0],
+                   [0.0, 0.0, 1.0, 0.0],
+                   [0.0, 0.0, 0.0, 1.0]])
     return R
 
 # Translation matrix
-def translateOrigin(x=0.0, y=0.0, z=0.0):
+def getTranslationMatrix(x=0.0, y=0.0, z=0.0):
     T = np.matrix([[1.0, 0.0, 0.0, x],
-                    [0.0, 1.0, 0.0, y],
-                    [0.0, 0.0, 1.0, z],
-                    [0.0, 0.0, 0.0, 1.0]])
+                   [0.0, 1.0, 0.0, y],
+                   [0.0, 0.0, 1.0, z],
+                   [0.0, 0.0, 0.0, 1.0]])
     return T
 
 # Apply transformation matrix to set of points
@@ -117,10 +117,16 @@ def applyVectorTransformation(P, M):
         return np.array(Out)
 
 # Rotate Mueller matrix
-def rotateMueller(M, Theta):
+def getMuellerRotationMatrix(M, Theta):
     Theta = np.radians(Theta)
     R = np.matrix([[1.0,  0.0,             0.0,             0.0], 
                    [0.0,  np.cos(2*Theta), np.sin(2*Theta), 0.0], 
                    [0.0, -np.sin(2*Theta), np.cos(2*Theta), 0.0], 
                    [0.0,  0.0,             0.0,             1.0]])
     return R*M
+
+def roundOffDisplay(D):
+    floatParam = '{: 0.' + str(D) + 'f}'
+    print(floatParam)
+    np.set_printoptions(formatter={'float':floatParam.format})
+    return
