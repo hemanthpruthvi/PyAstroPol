@@ -41,13 +41,13 @@ class System():
     [M_30, M_31, M_32, M_33] = Out_4 - 0.5*(Out_1 + Out_2)
     """
     def __init__(self, Source, Components, Detector, dRays=None):
-        self.Source = cp.copy(Source)
-        self.Components = cp.copy(Components)
-        self.Detector = cp.copy(Detector)
+        self.Source = cp.deepcopy(Source)
+        self.Components = cp.deepcopy(Components)
+        self.Detector = cp.deepcopy(Detector)
         if (dRays == None) : 
-            self.DisplayRays = cp.copy(Source)
+            self.DisplayRays = cp.deepcopy(Source)
         else :
-            self.DisplayRays = cp.copy(dRays)
+            self.DisplayRays = cp.deepcopy(dRays)
         return
     
     # Propagate rays

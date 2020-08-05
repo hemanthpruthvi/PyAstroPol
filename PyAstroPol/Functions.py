@@ -127,6 +127,6 @@ def getMuellerRotationMatrix(M, Theta):
 
 def roundOffDisplay(D):
     floatParam = '{: 0.' + str(D) + 'f}'
-    print(floatParam)
+    # print(floatParam)
     np.set_printoptions(formatter={'float':floatParam.format})
     return

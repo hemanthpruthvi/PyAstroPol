@@ -18,8 +18,8 @@ class Detector(Surface):
     def __init__(self, Dia):
         Surface.__init__(self, Dia)
         self.Mirror = False
-        return
-        
+        return    
+
 class UncoatedLens():
     """
     A simple singlet lens containing two uncoated surfaces
@@ -92,3 +92,5 @@ class UncoatedLens():
         self.S1.drawRays(Ax, **kwargs)
         self.S2.drawRays(Ax, **kwargs)
         return
+    
+    
