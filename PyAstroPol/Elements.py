@@ -1,3 +1,10 @@
+"""
+Author : Hemanth Pruthvi
+File name : Elements.py
+Package : PyAstroPol
+Description : Detector, Lens and likewise classes of optical elelements
+"""
+
 import numpy as np
 import copy as cp
 import random as rd
@@ -38,6 +45,7 @@ class UncoatedLens():
         self.Thick = Thick
         return
     
+    # Propagate Rays through the element
     def propagateRays(self, Rays):
         self.iRays = cp.copy(Rays)
         self.S1.propagateRays(Rays)
@@ -46,24 +54,31 @@ class UncoatedLens():
         self.tRays = self.S2.tRays
         return
     
+    # Rotate the element about global X-axis
     def rotateAboutX(self, ThetaX):
         self.S1.rotateAboutX(ThetaX)
         self.S2.rotateAboutX(ThetaX)
         return
+    
+    # Rotate the element about global Y-axis
     def rotateAboutX(self, ThetaY):
         self.S1.rotateAboutY(ThetaY)
         self.S2.rotateAboutY(ThetaY)
         return
+    
+    # Rotate the element about global Z-axis
     def rotateAboutX(self, ThetaZ):
         self.S1.rotateAboutZ(ThetaZ)
         self.S2.rotateAboutZ(ThetaZ)
         return
     
+    # Translate the element relative to present position
     def translateOrigin(self, x=0.0, y=0.0, z=0.0):
         self.S1.translateOrigin(x=x, y=y, z=z)
         self.S2.translateOrigin(x=x, y=y, z=z)
         return
     
+    # Draw the element in 3D
     def draw(self, Ax, **kwargs):
         x1temp = np.reshape(self.S1.X, newshape=(self.S1.thetaRes, self.S1.rRes))[:,-1]
         y1temp = np.reshape(self.S1.Y, newshape=(self.S1.thetaRes, self.S1.rRes))[:,-1]
@@ -88,6 +103,7 @@ class UncoatedLens():
         self.S2.draw(Ax, **kwargs)
         return
     
+    # Draw incident rays to the Surfaces of the element
     def drawRays(self, Ax, **kwargs):
         self.S1.drawRays(Ax, **kwargs)
         self.S2.drawRays(Ax, **kwargs)

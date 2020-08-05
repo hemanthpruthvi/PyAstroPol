@@ -1,3 +1,10 @@
+"""
+Author : Hemanth Pruthvi
+File name : System.py
+Package : PyAstroPol
+Description : Optical system class
+"""
+
 import numpy as np
 import copy as cp
 import random as rd
@@ -62,8 +69,9 @@ class System():
             self.Detector.propagateRays(self.Components[-1].rRays)
         else:
             self.Detector.propagateRays(self.Components[-1].tRays)
-        return        
-    # Polarimeter
+        return
+    
+    # System Mueller matrix calculation
     def getSystemMuellerMatrix(self):
         Source, Components = self.Source, self.Components
         Ex_In = [1.0+0.0j, 0.0+0.0j, np.sqrt(0.5)+0.0j, np.sqrt(0.5)+0.0j]
@@ -99,7 +107,7 @@ class System():
         self.M = M
         return MNorm, M[0,0]/np.float(Source.NRays)**2
         
-    # Draw
+    # Draw all the elements and rays of the system
     def draw(self, Ax, clear=False):
         Source = cp.copy(self.DisplayRays)
         Components = cp.copy(self.Components)
@@ -123,6 +131,7 @@ class System():
         Detector.draw(Ax, color='r', alpha=0.5)
         Detector.drawRays(Ax, color='k', alpha=0.7)
         return
+    
     # Draw spot diagram as seen on the detector
     def drawSpotDiagram(self, Ax, **kwargs):
         self.Detector.tRays.drawSpotDiagram(Ax, 0, **kwargs)

@@ -1,3 +1,10 @@
+"""
+Author : Hemanth Pruthvi
+File name : Functions.py
+Package : PyAstroPol
+Description : Frequently used functions in other codes
+"""
+
 import numpy as np
 import copy as cp
 import random as rd

@@ -1,3 +1,10 @@
+"""
+Author : Hemanth Pruthvi
+File name : Surface.py
+Package : PyAstroPol
+Description : Surface class, basis for all the elements
+"""
+
 import numpy as np
 import copy as cp
 import random as rd

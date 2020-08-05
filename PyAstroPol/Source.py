@@ -1,3 +1,10 @@
+"""
+Author : Hemanth Pruthvi
+File name : Source.py
+Package : PyAstroPol
+Description : Rays, Source and likewise classes
+"""
+
 import numpy as np
 import copy as cp
 import random as rd

@@ -1,3 +1,10 @@
+"""
+Author : Hemanth Pruthvi
+File name : Coating.py
+Package : PyAstroPol
+Description : Coating and related classes
+"""
+
 import numpy as np
 import copy as cp
 import random as rd
@@ -33,7 +40,7 @@ class Coating():
         return
     
     # This will compute effects on transmission and reflection
-    def applyToSurface(self, Surf):                                
+    def applyToSurface(self, Surf):
         self.Wavelength = np.copy(Surf.iRays.Wavelength)
         self.iRI, self.sRI = np.copy(Surf.iRI), np.copy(Surf.tRI)
         self.iTheta, self.sTheta = np.copy(Surf.iTheta), np.copy(Surf.tTheta)
@@ -79,7 +86,7 @@ class Coating():
         self.rp, self.tp= (iEta*E - H)/(iEta*E + H), 2*iEta/(iEta*E + H)
         return
     
-    # This will reverse the coating; useful for coated lenses
+    # This will reverse the coating; useful for coated elements
     def reverseTheCoating(self):
         self.RI = self.RI[::-1]
         self.Thick = self.Thick[::-1]
