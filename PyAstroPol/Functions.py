@@ -132,8 +132,61 @@ def getMuellerRotationMatrix(M, Theta):
                    [0.0,  0.0,             0.0,             1.0]])
     return R*M
 
+# Display digits in iPython
 def roundOffDisplay(D):
     floatParam = '{: 0.' + str(D) + 'f}'
     # print(floatParam)
     np.set_printoptions(formatter={'float':floatParam.format})
     return
+
+# Format the material file
+def formatMaterialFile(Name):
+    FileName = '../Materials/' + str(Name) + '.csv'
+    f = open(FileName, 'r')
+    w, n, k = [], [], []
+    f.readlines(1)
+
+    # Replace missing values with -1000
+    for i in f:
+        temp = i.split(',')
+        w.append(float(temp[0]))
+        try:
+            n.append(float(temp[1]))
+        except:
+            n.append(-1000)
+        try:
+            k.append(float(temp[2]))
+        except:
+            k.append(-1000)   
+    f.close()
+
+    # Find indices of missing values
+    w, n, k = np.array(w), np.array(n), np.array(k)
+    n_ok = np.argwhere(n != -1000).flatten()
+    k_ok = np.argwhere(k != -1000).flatten()
+    n_nan = np.argwhere(n == -1000).flatten()
+    k_nan = np.argwhere(k == -1000).flatten()
+
+    # Interpolate missing values using existing
+    w_proper, n_proper = w[n_ok], n[n_ok]
+    for i in n_nan:
+        n[i] = np.interp(w[i], w_proper, n_proper)
+    w_proper, k_proper = w[k_ok], k[k_ok]
+    for i in k_nan:
+        k[i] = np.interp(w[i], w_proper, k_proper)
+
+    # Get string data ready to be written to file
+    Data = ''
+    for i in range(len(w)):
+        Data += str(w[i])
+        Data += ','
+        Data += str(n[i])
+        Data += ','
+        Data += str(k[i])
+        Data += '\n'
+    # Write the data to the same file
+    f = open(FileName, 'w')
+    f.write(Data)
+    f.close()
+    return
+

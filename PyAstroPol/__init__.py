@@ -10,4 +10,5 @@ from .Source import *
 from .Surface import *
 from .Coating import *
 from .Elements import *
+from .Material import *
 from .Functions import *

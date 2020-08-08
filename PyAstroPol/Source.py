@@ -66,6 +66,14 @@ class Rays():
         self.Ey = Ey*np.ones((self.NRays,1))
         return 
     
+    def computeKurtosis(self):
+        k = np.sum((self.Origin + Length*self.oAxis - self.Points)*self.oAxis, axis=1)/np.sum(self.oCosines*self.oAxis, axis=1)
+        k = np.abs(k.reshape((len(k),1)))
+        x = np.sum((self.Points + k*self.oCosines)*self.xAxis, axis=1)
+        y = np.sum((self.Points + k*self.oCosines)*self.yAxis, axis=1)
+        self.Kurt = np.sum((x-x[0])**4 + (y-y[0])**4)/np.sum((x-x[0])**2 + (y-y[0])**2)**2
+        return
+
     # Graphics
     def drawRays(self, Ax, Length, **kwargs):
         P1 = self.Points

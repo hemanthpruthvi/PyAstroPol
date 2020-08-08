@@ -12,7 +12,9 @@ from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from datetime import datetime as dt
 #
-from .Functions import *#
+from .Functions import *
+from .Material import *
+from .Coating import *
 #
 
 class Surface():
@@ -57,10 +59,22 @@ class Surface():
     def __init__(self, Dia, R=np.inf, K=0, Mirror=False, iDia=0.0,
                  OffAxis=False, OffAxDist=0.0, OffAxAz=0.0, 
                  n1=1.0+0.0j, n2=1.5+0.0j):
-        self.iRI = np.copy(n1) # Electric permeability/ refractive index of medium-1
-        self.tRI = np.copy(n2) # Electric permeability/ refractive index of medium-2
-        self.iMU = 1.0 + 0.0j # Magnetic permeability of medium-1
-        self.tMU = 1.0 + 0.0j # Magnetic permeability of medium-2
+        
+        # Refractive index of medium-1
+        if (type(n1) == str):
+            self.iMedium = np.copy(n1)
+            self.iRI = Material(self.iMedium).getRefractiveIndexAt(0.6328)
+        else:
+            self.iRI = np.copy(n1)
+        self.iMU = 1.0
+        # Refractive index of medium-2
+        if (type(n2) == str):
+            self.tMedium = np.copy(n2)
+            self.tRI = Material(self.tMedium).getRefractiveIndexAt(0.6328)
+        else:
+            self.tRI = np.copy(n2)
+        self.tMU = 1.0
+        #
         self.Aperture = Dia
         self.Mirror = Mirror
         self.InnerDia = iDia
@@ -103,7 +117,6 @@ class Surface():
             self.OffAxis = False
             self.OffAxisDistance = 0.0
             self.OffAxisAzimuth = 0.0
-            
         #
         self.renderSurface(5, 13)
         
@@ -209,6 +222,7 @@ class Surface():
         
     # Compute points of incidence on the surface
     def computeIncidence(self, Rays):
+        self.loadRefractiveIndex(Rays.Wavelength)
         C = np.matrix(self.SurfaceMatrix)
         self.iRays = cp.copy(Rays)
         self.rRays = cp.copy(Rays)
@@ -353,13 +367,26 @@ class Surface():
         self.tRays.yAxis = self.tRays.yCosines[0,:]
         self.tRays.oAxis = self.tRays.oCosines[0,:]
         return
+    
+    
+    # Material
+    def loadRefractiveIndex(self, Wave):
+        try:
+            self.iRI = Material(self.iMedium).getRefractiveIndexAt(Wave)
+        except:
+            pass
+        try:
+            self.tRI = Material(self.tMedium).getRefractiveIndexAt(Wave)
+        except:
+            pass
+        return
+    
     # Coating
     def applyCoating(self, Coat):
         Coat.applyToSurface(self)
         self.rs, self.ts = np.copy(Coat.rs), np.copy(Coat.ts)
         self.rp, self.tp = np.copy(Coat.rp), np.copy(Coat.tp)
         return
-
 
     def propagateRays(self, Rays):
         self.computeIncidence(Rays)
