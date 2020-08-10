@@ -66,13 +66,14 @@ class Rays():
         self.Ey = Ey*np.ones((self.NRays,1))
         return 
     
-    def computeKurtosis(self):
-        k = np.sum((self.Origin + Length*self.oAxis - self.Points)*self.oAxis, axis=1)/np.sum(self.oCosines*self.oAxis, axis=1)
+    def computeRMSRadius(self):
+        k = np.sum((self.Origin - self.Points)*self.oAxis, axis=1)/np.sum(self.oCosines*self.oAxis, axis=1)
         k = np.abs(k.reshape((len(k),1)))
         x = np.sum((self.Points + k*self.oCosines)*self.xAxis, axis=1)
         y = np.sum((self.Points + k*self.oCosines)*self.yAxis, axis=1)
-        self.Kurt = np.sum((x-x[0])**4 + (y-y[0])**4)/np.sum((x-x[0])**2 + (y-y[0])**2)**2
-        return
+        r = np.sqrt((x-x[0])**2 + (y-y[0])**2)*self.Mask.flatten()
+        self.RMSRadius = np.sqrt(np.sum(r**2)/np.sum(self.Mask))
+        return self.RMSRadius
 
     # Graphics
     def drawRays(self, Ax, Length, **kwargs):
@@ -120,6 +121,7 @@ class Source(Rays):
     Random : Bool : Ray distrbution, if not True rays are distributed in ring fashion with quasi-uniform density
     """
     def __init__(self, NRays, Type='Collimated', Clear=1.0, FNum=1.0, Random=False):
+        if (NRays < 4) : NRays = 4
         Rays.__init__(self, NRays)
         self.Type = np.copy(Type)
         self.Random = np.copy(Random)
@@ -141,6 +143,7 @@ class Source(Rays):
             Rings = np.linspace(0, Rad, NRings+1)
             NThetas = np.zeros(NRings, dtype=np.int)
             Radii, Thetas = np.array([]), np.array([])
+            i = -1
             for i in range(NRings-1):
                 NThetas[i] = int(2*np.pi*Rings[i+1]*RayDens)
                 Radii = np.append(Radii, Rings[i+1]*np.ones(NThetas[i]))
