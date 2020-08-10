@@ -75,7 +75,7 @@ class System():
     def getSystemMuellerMatrix(self):
         Source, Components = self.Source, self.Components
         Ex_In = [1.0+0.0j, 0.0+0.0j, np.sqrt(0.5)+0.0j, np.sqrt(0.5)+0.0j]
-        Ey_In = [0.0+0.0j, 1.0+0.0j, np.sqrt(0.5)+0.0j, 0.0-np.sqrt(0.5)*1j]
+        Ey_In = [0.0+0.0j, 1.0+0.0j, np.sqrt(0.5)+0.0j, 0.0+np.sqrt(0.5)*1j]
         OutRays = []
         for Ex, Ey in zip(Ex_In, Ey_In):
             Source.createPolarization(Ex, Ey)
@@ -96,15 +96,15 @@ class System():
             Out.append(ExTemp*np.conjugate(ExTemp)+EyTemp*np.conjugate(EyTemp))
             Out.append(ExTemp*np.conjugate(ExTemp)-EyTemp*np.conjugate(EyTemp))
             Out.append(ExTemp*np.conjugate(EyTemp)+EyTemp*np.conjugate(ExTemp))
-            Out.append(1j*(EyTemp*np.conjugate(ExTemp)-ExTemp*np.conjugate(EyTemp)))
+            Out.append(1j*(ExTemp*np.conjugate(EyTemp)-EyTemp*np.conjugate(ExTemp)))
         Out = np.real(np.array(Out)).reshape((4,4))
         M = np.copy(Out)
-        M[0,:] = 0.5*(Out[0,:] + Out[1,:])
-        M[1,:] = 0.5*(Out[0,:] - Out[1,:])
-        M[2,:] = Out[2,:] - 0.5*(Out[0,:] + Out[1,:])
-        M[3,:] = Out[3,:] - 0.5*(Out[0,:] + Out[1,:])
-        MNorm = M/M[0,0]
-        self.M = M
+        M[:,0] = 0.5*(Out[0,:] + Out[1,:])
+        M[:,1] = 0.5*(Out[0,:] - Out[1,:])
+        M[:,2] = Out[2,:] - 0.5*(Out[0,:] + Out[1,:])
+        M[:,3] = Out[3,:] - 0.5*(Out[0,:] + Out[1,:])
+        MNorm = np.matrix(M/M[0,0])
+        self.MuellerMatrix = np.matrix(M)
         return MNorm, M[0,0]/np.float(Source.NRays)**2
         
     # Draw all the elements and rays of the system

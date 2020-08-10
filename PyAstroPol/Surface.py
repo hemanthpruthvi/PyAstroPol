@@ -322,8 +322,8 @@ class Surface():
         # Transmission direction
         nCROSSi = np.reshape(np.linalg.norm(np.cross(self.nCosines, self.iRays.oCosines), axis=1), 
                              newshape=(self.iRays.NRays, 1))
-        tTheta = np.real(np.arcsin(self.iRI*np.sin(self.iTheta)/self.tRI))
-        tCosines = -self.nCosines*np.cos(tTheta) + self.tCosines*np.sin(tTheta)
+        tTheta = np.arcsin(self.iRI*np.sin(self.iTheta)/self.tRI)
+        tCosines = -self.nCosines*np.cos(np.real(tTheta)) + self.tCosines*np.sin(np.real(tTheta))
         self.tRays.oCosines = normalize3DVectors(tCosines)
         self.tTheta = np.copy(tTheta)
         # p-Polarization direction
@@ -336,8 +336,9 @@ class Surface():
         CROSSTemp = np.cross(self.iRays.xCosines, self.sCosines)
         CROSS = np.sum(self.iRays.oCosines*CROSSTemp, axis=1)
         Theta = np.reshape(np.arctan2(CROSS, DOT), newshape=(self.iRays.NRays, 1))
+        self.CoordTheta = Theta
         # Coefficients of reflection and transmission
-        self.rp = ((self.iRI/self.iMU)*np.cos(self.tTheta)-(self.tRI/self.tMU)*np.cos(self.iTheta)) / \
+        self.rp = ((self.tRI/self.tMU)*np.cos(self.iTheta)-(self.iRI/self.iMU)*np.cos(self.tTheta)) / \
                     ((self.iRI/self.iMU)*np.cos(self.tTheta)+(self.tRI/self.tMU)*np.cos(self.iTheta))
         self.tp = (2*(self.iRI/self.iMU)*np.cos(self.iTheta)) / \
                     ((self.iRI/self.iMU)*np.cos(self.tTheta)+(self.tRI/self.tMU)*np.cos(self.iTheta))
@@ -350,10 +351,10 @@ class Surface():
         Ep = -self.iRays.Ex*np.sin(Theta)+self.iRays.Ey*np.cos(Theta)
         # Reflection
         Es_r, Ep_r = Es*self.rs, Ep*self.rp
-        self.rRays.Ex =  Es_r*np.cos(np.pi+Theta) + Ep_r*np.sin(np.pi+Theta)
-        self.rRays.Ey = -Es_r*np.sin(np.pi+Theta) + Ep_r*np.cos(np.pi+Theta)
-        self.rRays.xCosines =  self.sCosines*np.cos(np.pi+Theta) + self.pCosines_r*np.sin(np.pi+Theta)
-        self.rRays.yCosines = -self.sCosines*np.sin(np.pi+Theta) + self.pCosines_r*np.cos(np.pi+Theta)
+        self.rRays.Ex =  Es_r*np.cos(-Theta) + Ep_r*np.sin(-Theta)
+        self.rRays.Ey = -Es_r*np.sin(-Theta) + Ep_r*np.cos(-Theta)
+        self.rRays.xCosines =  self.sCosines*np.cos(-Theta) + self.pCosines_r*np.sin(-Theta)
+        self.rRays.yCosines = -self.sCosines*np.sin(-Theta) + self.pCosines_r*np.cos(-Theta)
         self.rRays.xAxis = self.rRays.xCosines[0,:]
         self.rRays.yAxis = self.rRays.yCosines[0,:]
         self.rRays.oAxis = self.rRays.oCosines[0,:]

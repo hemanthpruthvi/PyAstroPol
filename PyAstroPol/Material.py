@@ -31,7 +31,7 @@ class Material():
             print('Invalid material name or file! Check both!')
             return
         self.Wavelength = Array[:,0]
-        self.RI = Array[:,1] + 1j*Array[:,2]
+        self.RI = Array[:,1] - 1j*Array[:,2]
         return
     
     # Interpolate RI for a given wavelength

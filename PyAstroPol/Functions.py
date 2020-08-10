@@ -124,7 +124,15 @@ def applyVectorTransformation(P, M):
         return np.array(Out)
 
 # Rotate Mueller matrix
-def getMuellerRotationMatrix(M, Theta):
+def MuellerRotationMatrix(Theta):
+    Theta = np.radians(Theta)
+    R = np.matrix([[1.0,  0.0,             0.0,             0.0], 
+                   [0.0,  np.cos(2*Theta), np.sin(2*Theta), 0.0], 
+                   [0.0, -np.sin(2*Theta), np.cos(2*Theta), 0.0], 
+                   [0.0,  0.0,             0.0,             1.0]])
+    return R
+
+def rotateMuellerMatrix(M, Theta):
     Theta = np.radians(Theta)
     R = np.matrix([[1.0,  0.0,             0.0,             0.0], 
                    [0.0,  np.cos(2*Theta), np.sin(2*Theta), 0.0], 
