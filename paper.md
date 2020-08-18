@@ -23,9 +23,8 @@ bibliography: paper.bib
 
 # Summary
 
-Polarization analysis is one of the key aspects of optical system analysis in astronomy (). `PyAstroPol` package is meant to provide a means to analyze the polarization properties of a given optical system with relative ease and very limited dependencies. The one simple goal is to calculate the Mueller matrix of a given optical system.
-
-It can be easily distributed along with polarization calibration routines. It incorporates commonly used optics in astronomy such as off-axis mirrors, mirrors with central hole, astronomical source that can be placed by using its declination and hour angle and multi-layer coatings. Albeit there are several limitations, these features should cover a large set of polarization analysis related applications. The salient features and limitations are listed below.
+Polarization analysis is one of the key aspects of optical system analysis in astronomy (e.g., @TMT_2015 ; @DKIST_2016 ). `PyAstroPol` package provides a means to analyze the polarization properties of a given optical system with relative ease and very limited dependencies. The one simple goal is to calculate the Mueller matrix (e.g., @Gil_2016_MullMatAppr) of the optical system.
+It can be easily distributed along with polarization calibration routines. It incorporates commonly used optics in astronomy such as off-axis mirrors, mirrors with central hole, multi-layer coatings, and astronomical source that can be placed by using its declination and hour angle. Albeit there are several limitations, these features should cover a large set of polarization analysis related applications. The limitations and salient features are listed below.
 
 Important Limitations : 
 * All the analysis uses strictly ray treatment. Hence, all the limitations of the rays optics are to be born in mind.
@@ -37,16 +36,16 @@ Important Limitations :
 Salient features :
 * Calculation of Mueller matrix of the given optical system, which is a simple and only end goal. All the rest are by-products of such analysis. However, a major caveat here is that the optical system will be assumed as imaging system i.e., to compute Mueller matrix the electric fields of all the rays will be added coherently after propagating through the system. It implies that the system is imaging type, which is commonplace in astronomy. 
 * Astronomical source can be placed directly, using relevant coordinates namely declination, hour angle and latitude of the site.
-* Analysis of off-axis components, as they have a significant effect on polarization.
-* Effect of multi-layered coatings such as oxide layers and protective coatings on polarization, which are common in astronomical optics.
+* Off-axis components are facilitated, as they have a significant effect on polarization.
+* Effect of multi-layered coatings such as oxide layers and protective coatings on polarization, which are common in astronomical optics (e.g., @VanHarten_2009).
 * All the data such as points of incidence, polarization directions, complex electric field values and more are readily available to the user for any further analysis.
 * Material refractive index information can be directly downloaded from popular online source [https://refractiveindex.info/](https://refractiveindex.info/), and used in the applications.
 * Spot diagram is possible at any instance, as a by-product of ray tracing. 
 
+Results of the code have been verified against previous works (@Pruthvi2018) and a popular commercial software. Provided examples should facilitate the quick-start.
 
 # Acknowledgements
 
-We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
-Oh, and support from Kathryn Johnston during the genesis of this project.
+This work has been carried out as a part of ongoing project `Jets in the solar atmosphere`.
 
 # References
