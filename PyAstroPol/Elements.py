@@ -1,16 +1,10 @@
 """
-Author : Hemanth Pruthvi
-File name : Elements.py
-Package : PyAstroPol
-Description : Detector, Lens and likewise classes of optical elelements
+|  Author : Hemanth Pruthvi
+|  File name : Elements.py
+|  Package : PyAstroPol
+|  Description : Detector, Lens and likewise classes of optical elelements
 """
 
-import numpy as np
-import copy as cp
-import random as rd
-from matplotlib import pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from datetime import datetime as dt
 #
 from .Source import *
 from .Surface import *
@@ -19,8 +13,8 @@ from .Functions import *
    
 class Detector(Surface):
     """
-    Plane surface with no special attributes
-    Created for the purposes of easy selection
+    |  Plane Surface() with no special attributes.
+    |  Created for the purpose of easily specifying detector.
     """
     def __init__(self, Dia):
         Surface.__init__(self, Dia)
@@ -29,11 +23,12 @@ class Detector(Surface):
 
 class UncoatedLens():
     """
-    A simple singlet lens containing two uncoated surfaces
-    // Attributes: General
-    S1 : Surface() : Front surface
-    S2 : Surface() : Back surface
-    Thick : Float : Thickness of the lens (redundant)
+    |  A simple singlet lens containing two uncoated surfaces
+
+    |  Attributes: General
+    |  S1 : Surface() : Front surface
+    |  S2 : Surface() : Back surface
+    |  Thick : Float : Thickness of the lens (redundant)
     """
     def __init__(self, Dia, Thick, R1=np.inf, R2=np.inf, K1=0.0, K2=0.0, n=1.5+0.0j):
         self.S1 = Surface(Dia, R=R1, K=K1, n1=1.0+0.0j, n2=n)
@@ -45,8 +40,11 @@ class UncoatedLens():
         self.Thick = Thick
         return
     
-    # Propagate Rays through the element
     def propagateRays(self, Rays):
+        """
+        |  Propagate given Rays through the element.
+        |  Specify a Rays() for the input. 
+        """
         self.iRays = cp.copy(Rays)
         self.S1.propagateRays(Rays)
         self.S2.propagateRays(self.S1.tRays)
@@ -54,32 +52,47 @@ class UncoatedLens():
         self.tRays = self.S2.tRays
         return
     
-    # Rotate the element about global X-axis
     def rotateAboutX(self, ThetaX):
+        """
+        |  Rotate the element about global X-axis relative to present position.
+        |  Input : X-rotation angle in degrees
+        """
         self.S1.rotateAboutX(ThetaX)
         self.S2.rotateAboutX(ThetaX)
         return
     
-    # Rotate the element about global Y-axis
-    def rotateAboutX(self, ThetaY):
+    def rotateAboutY(self, ThetaY):
+        """
+        |  Rotate the element about global Y-axis relative to present position.
+        |  Input : Y-rotation angle in degrees
+        """
         self.S1.rotateAboutY(ThetaY)
         self.S2.rotateAboutY(ThetaY)
         return
     
-    # Rotate the element about global Z-axis
-    def rotateAboutX(self, ThetaZ):
+    def rotateAboutZ(self, ThetaZ):
+        """
+        |  Rotate the element about global Z-axis relative to present position.
+        |  Input : Z-rotation angle in degrees
+        """
         self.S1.rotateAboutZ(ThetaZ)
         self.S2.rotateAboutZ(ThetaZ)
         return
     
-    # Translate the element relative to present position
     def translateOrigin(self, x=0.0, y=0.0, z=0.0):
+        """
+        |  Translate the element relative to present position.
+        |  Inputs : X translation, Y translation and Z translation.
+        """
         self.S1.translateOrigin(x=x, y=y, z=z)
         self.S2.translateOrigin(x=x, y=y, z=z)
         return
     
-    # Draw the element in 3D
     def draw(self, Ax, **kwargs):
+        """
+        |  Draw the element in 3D.
+        |  Inputs : Pyplot Axis, kwargs that are directly pass to plot function.
+        """
         x1temp = np.reshape(self.S1.X, newshape=(self.S1.thetaRes, self.S1.rRes))[:,-1]
         y1temp = np.reshape(self.S1.Y, newshape=(self.S1.thetaRes, self.S1.rRes))[:,-1]
         z1temp = np.reshape(self.S1.Z, newshape=(self.S1.thetaRes, self.S1.rRes))[:,-1]
@@ -103,8 +116,11 @@ class UncoatedLens():
         self.S2.draw(Ax, **kwargs)
         return
     
-    # Draw incident rays to the Surfaces of the element
     def drawRays(self, Ax, **kwargs):
+        """
+        |  Draw incident rays to the Surfaces of the element.
+        |  Inputs : Pyplot Axis, kwargs that are directly pass to plot function.
+        """
         self.S1.drawRays(Ax, **kwargs)
         self.S2.drawRays(Ax, **kwargs)
         return
