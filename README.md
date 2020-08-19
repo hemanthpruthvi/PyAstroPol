@@ -60,7 +60,7 @@ plt.show()
 ```  
 7. Compute Mueller matrix and print it.
 ```python
-MM, T =O_ system.getSystemMuellerMatrix()
+MM, T =O_system.getSystemMuellerMatrix()
 print(MM)
 ```  
 ## Directories
