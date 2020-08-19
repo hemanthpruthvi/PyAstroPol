@@ -20,7 +20,7 @@ The package need not be installed as the installation scheme is not final yet. F
 1. Download the package and extract it to a directory of liking - `<User directory>/PyAstroPol`.  
 2. Add `<User directory>/PyAstroPol` to the `PYTHONPATH`.  
 
-[PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `iPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__. 
+[PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `IPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__. 
 
 As previously mentioned this is not a design software. Hence, one needs to know the optical system they wish to analyze. As per the framework of the optical system, there are thee types of objects :
 1. Source  
