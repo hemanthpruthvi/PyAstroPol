@@ -7,6 +7,7 @@ It uses geomatric optics approach i.e., all the analysis uses strictly ray treat
 
 The package imports following libraries, all of which are ubiquitous. They accompany any decent Python distribution hence this package should function with virtually no dependency issues __however__ it should be noted that it is developed with `Python3.6`.
 ```python
+os
 numpy
 copy
 random
@@ -27,12 +28,12 @@ As previously mentioned this is not a design software. Hence, one needs to know 
 2. Components  
 3. Detector   
 
-To devise a simple optical system, follow these steps.  
+Following steps illustrate how to devise a simple optical system.  
 1. import the required package.
 ```python
 from PyAstroPol import * 
 ```  
-2. Create source, and optinally create a source for display. For analysis one can define a source with a lot of rays (say 10000), and for display one can define a source with fewer rays (say 10).  
+2. Create source, and optionally create a source for display. For analysis one can define a source with a lot of rays (say 10000), and for display one can define a source with fewer rays (say 10).  
 ```python
 S_analysis = Source(10000, Clear=20)
 S_display = Source(10, Clear=20)
@@ -72,9 +73,10 @@ It is the main directory containing all the source files. For more information o
 [PyAstroPol/Materials/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Materials)  
 It has the refractive index data for different materials in a formatted manner. These files are loaded by the code to look-up the refractive index information of the given material. Users cas easily create such files using following easy steps.
 1. Download wavelength vs refractive index file as `.csv` from popular refractive index database [RefractiveIndexInfo](https://refractiveindex.info/).
-2. Rename the file to a material name which you can call e.g., for Aluminium the file name is `Al.csv`.
+2. Rename the file to an appropriate material name e.g., for Aluminium the file name is `Al.csv`.
 3. Copy the `.csv` file into `./Materials/` directory.
 4. Format the material file using provided function i.e., `formatMaterialFile(MaterialName)` (without file extensions).
+5. The material is ready to be used by the code e.g., `M1 = Surface(50, n2='Al', Mirror=True)`.
 
 [PyAstroPol/Docs/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Docs)  
 It contains documentation related codes and files.  
