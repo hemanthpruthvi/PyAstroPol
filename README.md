@@ -25,14 +25,6 @@ It contains reveral examples files to demonstrate the applications of the packag
 [./Docs/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Docs)  
 It contains documentation related codes and files.  
 
-
-
-
-
-
-
-
-
 ## Conventions used in this package
 
 ### For astronomy : 
@@ -46,5 +38,8 @@ Positive Declination : North
 
 ### For optics : 
 Complex refractive index is __n-__*i*__k__ where __n__ and __k__ are positive real numbers.    
-Jones vectors corresponding to positive Stokes-V are <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{\sqrt 2} \begin{bmatrix} 1 \\ 0 \end{bmatrix}"> and <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{\sqrt 2} \begin{bmatrix} 0 \\ -i \end{bmatrix}">.  
+Jones vectors corresponding to positive Stokes-V are <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{\sqrt 2} \begin{bmatrix} 1 \\ 0 \end{bmatrix}"> and <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{\sqrt 2} \begin{bmatrix} 0 \\ -i \end{bmatrix}">. 
 
+## TODO
+1. Add polarizing elements such as birefringent elements, waveplates and polarizers.
+2. Add feature to create and save coatings as files.
