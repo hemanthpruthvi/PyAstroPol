@@ -66,11 +66,8 @@ print(MM)
 ## Directories
 
 [PyAstroPol/PyAstroPol/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/PyAstroPol)  
-It is the main directory containing all the source files. For example, they can be imported as  
-```python
-from PyAstroPol.PyAstroPol import * 
-R = Rays(10)
-```
+It is the main directory containing all the source files. For more information on the classes check the documentation at `PyAstroPol/Docs/_build/html/PyAstroPol.html`.
+
 [PyAstroPol/Materials/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Materials)  
 It has the refractive index data for different materials in a formatted manner. These files are loaded by the code to look-up the refractive index information of the given material. Users cas easily create such files using following easy steps.
 1. Download wavelength vs refractive index file as `.csv` from popular refractive index database [RefractiveIndexInfo](https://refractiveindex.info/).
