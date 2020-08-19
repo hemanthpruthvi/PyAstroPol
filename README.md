@@ -1,9 +1,11 @@
 # PyAstroPol
-Instrumental Polarization Analysis for Astronomical Optics
+Instrumental Polarization Analysis of Astronomical Optics
 
 ## Overview
-The package has one simple goal : Compute 4x4 Mueller matrix for the given optical system, and it is developed keeping astronomical optics in view.
-It uses geomatric optics approach i.e., all the analysis uses strictly ray treatment. The most important aspect to remember while delving into using the package is __the convention__, which is described in this file.
+The package has one simple goal : compute 4x4 Mueller matrix for the given optical system, and it is developed keeping astronomical optics in view.
+It uses geomatric optics approach i.e., all the analysis uses strictly ray treatment. Users should keep in mind that this is NOT for optical design i.e., it is presumed that the user already knows the optical system that is to be analyzed.
+
+
 
 The package imports following libraries, all of which are ubiquitous. They accompany any decent Python distribution hence this package should function with virtually no dependency issues __however__ it should be noted that it is developed with `Python3.6`.
 ```python
@@ -14,6 +16,14 @@ matplotlib
 mpl_toolkits
 datetime
 ```
+
+## Getting Started
+
+[PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `iPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__. As previously mentioned this is not a design software.
+
+
+
+## 
 
 ## Directories
 [./PyAstroPol/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/PyAstroPol)  
@@ -29,14 +39,13 @@ It has the refractive index data for different materials in a formatted manner. 
 3. Copy the `.csv` file into `./Materials/` directory.
 4. Format the material file using provided function i.e., `formatMaterialFile(MaterialName)` (without file extensions).
 
-[./Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples)  
-It contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `iPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__.
+
 
 [./Docs/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Docs)  
 It contains documentation related codes and files.  
 
-## Conventions used in this package
-
+## Conventions used in this package  
+The most important aspect to remember while using the package is __the convention__, which is described below. 
 ### For astronomy : 
 Positive X-axis : West  
 Positive Y-axis : Zenith  
