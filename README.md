@@ -5,8 +5,6 @@ Instrumental Polarization Analysis of Astronomical Optics
 The package has one simple goal : compute 4x4 Mueller matrix for the given optical system, and it is developed keeping astronomical optics in view.
 It uses geomatric optics approach i.e., all the analysis uses strictly ray treatment. Users should keep in mind that this is NOT for optical design i.e., it is presumed that the user already knows the optical system that is to be analyzed.
 
-
-
 The package imports following libraries, all of which are ubiquitous. They accompany any decent Python distribution hence this package should function with virtually no dependency issues __however__ it should be noted that it is developed with `Python3.6`.
 ```python
 numpy
@@ -18,8 +16,11 @@ datetime
 ```
 
 ## Getting Started
+The package need not be installed as the installation scheme is not final yet. Follow these steps to start using the package.  
+1. Download the package and extract it to a directory of liking - `<User directory>/PyAstroPol.git`.  
+2. Add `<User directory>/PyAstroPol.git` to the `PYTHONPATH`.  
 
-[PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `iPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__.  
+[PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `iPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__. 
 
 As previously mentioned this is not a design software. Hence, one needs to know the optical system they wish to analyze. As per the framework of the optical system, there are thee types of objects :
 1. Source  
