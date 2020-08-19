@@ -31,9 +31,9 @@ class System():
     |  Transmission : Float : Total fractional throughput of the system.
     """
     def __init__(self, Source, Components, Detector, dRays=None):
-        self.Source = Source
-        self.Components = Components
-        self.Detector = Detector
+        self.Source = cp.deepcopy(Source)
+        self.Components = cp.deepcopy(Components)
+        self.Detector = cp.deepcopy(Detector)
         if (dRays == None) : 
             self.DisplayRays = cp.deepcopy(Source)
         else :
