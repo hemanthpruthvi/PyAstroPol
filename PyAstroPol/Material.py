@@ -14,8 +14,9 @@ class Material():
     |  RI : ComplexFloat(N, 1) : Refractive index at given wavelengths
     """
     def __init__ (self, MaterialName):
+        CurDir = os.path.dirname(__file__)
         try:
-            FileName = '../Materials/' + str(MaterialName) + '.csv'
+            FileName = CurDir + '/../Materials/' + str(MaterialName) + '.csv'
         except:
             raise ValueError('Invalid material name or material file!')
             return
