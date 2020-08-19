@@ -64,6 +64,7 @@ MM, T =O_system.getSystemMuellerMatrix()
 print(MM)
 ```  
 ## Directories
+
 [PyAstroPol/PyAstroPol/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/PyAstroPol)  
 It is the main directory containing all the source files. For example, they can be imported as  
 ```python
@@ -76,6 +77,7 @@ It has the refractive index data for different materials in a formatted manner. 
 2. Rename the file to a material name which you can call e.g., for Aluminium the file name is `Al.csv`.
 3. Copy the `.csv` file into `./Materials/` directory.
 4. Format the material file using provided function i.e., `formatMaterialFile(MaterialName)` (without file extensions).
+
 [PyAstroPol/Docs/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Docs)  
 It contains documentation related codes and files.  
 
