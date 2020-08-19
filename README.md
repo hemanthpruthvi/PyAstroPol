@@ -39,7 +39,7 @@ S_analysis = Source(10000, Clear=20)
 S_display = Source(10, Clear=20)
 ```
 
-2. Create a component such as surface, lens etc,, and position it. 
+2. Create a component such as surface, lens etc., and position it. 
 ```python
 L = UncoatedLens(50, Thick=10, R1=200, R2=-200)
 L.translateOrigin(z=100.0)
