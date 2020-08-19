@@ -17,8 +17,8 @@ datetime
 
 ## Getting Started
 The package need not be installed as the installation scheme is not final yet. Follow these steps to start using the package.  
-1. Download the package and extract it to a directory of liking - `<User directory>/PyAstroPol.git`.  
-2. Add `<User directory>/PyAstroPol.git` to the `PYTHONPATH`.  
+1. Download the package and extract it to a directory of liking - `<User directory>/PyAstroPol`.  
+2. Add `<User directory>/PyAstroPol` to the `PYTHONPATH`.  
 
 [PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `iPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__. 
 
