@@ -5,6 +5,16 @@ Instrumental Polarization Analysis for Astronomical Optics
 The package has one simple goal : Compute 4x4 Mueller matrix for the given optical system, and it is developed keeping astronomical optics in view.
 It uses geomatric optics approach i.e., all the analysis uses strictly ray treatment. The most important aspect to remember while delving into using the package is __the convention__, which is described in this file.
 
+The package imports following libraries, all of which are ubiquitous. They accompany any decent Python distribution hence this package should run anywhere with virtually no dependency issues.
+```python
+numpy
+copy
+random
+matplotlib
+mpl_toolkits
+datetime
+```
+
 ## Directories
 [./PyAstroPol/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/PyAstroPol)  
 It is the main directory containing all the source files. For example, they can be imported as  
@@ -20,7 +30,7 @@ It has the refractive index data for different materials in a formatted manner. 
 4. Format the material file using provided function i.e., `formatMaterialFile(MaterialName)` (without file exyensions).
 
 [./Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples)  
-It contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `iPython` notebook and it is a good way to quick-start using the package.
+It contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `iPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__.
 
 [./Docs/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Docs)  
 It contains documentation related codes and files.  
