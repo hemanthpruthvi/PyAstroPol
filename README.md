@@ -24,53 +24,45 @@ datetime
 As previously mentioned this is not a design software. Hence, one needs to know the optical system they wish to analyze. As per the framework of this package, there are thee types of objects :
 1. Source  
 2. Components  
-3. Detector  
+3. Detector   
 
 To devise a simple optical system, follow these steps.  
-
 0. import the required package.
 ```python
 from PyAstroPol import * 
 ```  
-
 1. Create source, and optinally create a source for display. For analysis one can define a source with a lot of rays (say 10000), and for display one can define a source with fewer rays (say 10).  
 ```python
 S_analysis = Source(10000, Clear=20)
 S_display = Source(10, Clear=20)
-```
-
+```  
 2. Create a component such as surface, lens etc., and position it. 
 ```python
 L = UncoatedLens(50, Thick=10, R1=200, R2=-200)
 L.translateOrigin(z=100.0)
-```
-
+```  
 3. Create a detector and position it.
 ```python
 D = Detector(50)
 D.translateOrigin(z=200.0)
-```
-
+```  
 4. Put them together to create the optical system.
 ```python
 O_system = System(S_analysis, [L], D, dRays = S_display)
 O_system.propagateRays()
-```
-
+```  
 5. Display the optical system using matplotlib 3d axis.
 ```python
 Fig = plt.figure()
 Ax = Fig.add_subplot(111, projection='3d')
 O_system.draw(Ax)
 plt.show()
-```
-
+```  
 6. Compute Mueller matrix and print it.
 ```python
 MM, T =O_ system.getSystemMuellerMatrix()
 print(MM)
-```
-
+```  
 ## Directories
 [./PyAstroPol/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/PyAstroPol)  
 It is the main directory containing all the source files. For example, they can be imported as  
