@@ -39,10 +39,10 @@ Salient features :
 * Off-axis components are facilitated, as they have a significant effect on polarization.
 * Effect of multi-layered coatings such as oxide layers and protective coatings on polarization, which are common in astronomical optics (e.g., @VanHarten_2009).
 * All the data such as points of incidence, polarization directions, complex electric field values and more are readily available to the user for any further analysis.
-* Material refractive index information can be directly downloaded from popular online source [https://refractiveindex.info/](https://refractiveindex.info/), and used in the applications.
+* Material refractive index information, that can be downloaded from popular online source [https://refractiveindex.info/](https://refractiveindex.info/) as `.csv`, can be formatted and used with this package.
 * Spot diagram is possible at any instance, as a by-product of ray tracing. 
 
-Results of the code have been verified against previous works (@Pruthvi2018) and a popular commercial software. Provided examples should facilitate the quick-start.
+Results of the code have been verified against previous works (@Pruthvi2018) and a popular commercial software. A variety of examples have been provided and they should facilitate the quick-start.
 
 # Acknowledgements
 
