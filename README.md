@@ -5,7 +5,7 @@ Instrumental Polarization Analysis for Astronomical Optics
 The package has one simple goal : Compute 4x4 Mueller matrix for the given optical system, and it is developed keeping astronomical optics in view.
 It uses geomatric optics approach i.e., all the analysis uses strictly ray treatment. The most important aspect to remember while delving into using the package is __the convention__, which is described in this file.
 
-The package imports following libraries, all of which are ubiquitous. They accompany any decent Python distribution hence this package should run anywhere with virtually no dependency issues.
+The package imports following libraries, all of which are ubiquitous. They accompany any decent Python distribution hence this package should function with virtually no dependency issues __however__ it should be noted that it is developed with `Python3.6`.
 ```python
 numpy
 copy
