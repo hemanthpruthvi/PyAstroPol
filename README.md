@@ -22,16 +22,16 @@ datetime
 [PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `iPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__.  
 
 As previously mentioned this is not a design software. Hence, one needs to know the optical system they wish to analyze. As per the framework of this package, there are thee types of objects :
-
-1. Source
-2. Components
+1. Source  
+2. Components  
 3. Detector  
-To devise a simple optical system, follow these steps.
+
+To devise a simple optical system, follow these steps.  
 
 0. import the required package.
 ```python
 from PyAstroPol import * 
-```
+```  
 
 1. Create source, and optinally create a source for display. For analysis one can define a source with a lot of rays (say 10000), and for display one can define a source with fewer rays (say 10).  
 ```python
