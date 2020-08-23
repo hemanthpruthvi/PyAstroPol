@@ -29,12 +29,12 @@ It can be easily distributed along with polarization calibration routines. Albei
 Important Limitations : 
 * All the analysis uses strictly ray treatment. Hence, all the limitations of the rays optics are to be born in mind.
 * Only circular optics (apertures) can be devised at the moment. Elliptical and rectangular optics are not possible.
-* Incidentally, birefringent components are not included yet. The justification for this choice is that behavior of the birefringent components is fairly straight forward as they strongly polarize the light. Hence, they have been given lesser priority.
-* Visualization features are limited as the goal of this package is to make it as simple as possible. Hence, widely used `matplotlib` package is used for graphics. All the optics, rays, directions of the coordinate system can be displayed but pan and zoom features are severely limited.
+* Incidentally, birefringent components are not included yet. The justification for this choice is that the behavior of the birefringent components is fairly straight forward as they strongly polarize the light.
+* Visualization features are limited as the goal of this package is to keep things as simple as possible. Hence, widely used `matplotlib` package is used for the graphics. All the optics, rays, directions of the coordinate system can be displayed but pan and zoom features are severely limited.
 * The package can be described as collection of the important objects used in optics. It is neither interactive nor design-oriented. It means that user must know optical system beforehand, and every time a parameter changes, user must manually rerun the analysis. However, it should be possible to automate this process with a little effort. 
 
 Salient features :
-* Calculation of Mueller matrix of the given optical system, which is a simple and only end goal. All the rest are by-products of such analysis. However, a major caveat here is that the optical system will be assumed as imaging system i.e., to compute Mueller matrix the electric fields of all the rays will be added coherently after propagating through the system. It implies that the system is imaging type, which is commonplace in astronomy. 
+* Calculation of Mueller matrix of the given optical system, which is a simple and only end goal. All the rest are by-products of such analysis. However, a major caveat here is that to compute Mueller matrix the electric fields of all the rays will be added coherently after propagating through the system. It implies that the system is imaging type, which is commonplace in astronomy. 
 * Astronomical source can be placed directly, using relevant coordinates namely declination, hour angle and latitude of the site.
 * Off-axis components are facilitated, as they have a significant effect on polarization.
 * Effect of multi-layered coatings such as oxide layers and protective coatings on polarization, which are common in astronomical optics (e.g., @VanHarten_2009).
