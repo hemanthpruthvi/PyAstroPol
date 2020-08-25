@@ -46,6 +46,6 @@ Results of the code have been verified against previous works (@Pruthvi2018) and
 
 # Acknowledgements
 
-This work has been carried out as a part of ongoing project `Jets in the solar atmosphere`, funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) - Projektnummer 407727365. I thank DVS Phanindra (IIA, Bengaluru) and V. Sreekanth Reddy (RCI, Hyderabad) for the discussion, and Mathias Waidele (KIS, Freiburg) for his feedback.
+This work has been carried out as a part of ongoing project `Jets in the solar atmosphere`, funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) - Projektnummer 407727365. I thank DVS Phanindra (IIA, Bengaluru) and V. Sreekanth Reddy (CHESS, Hyderabad) for the discussion, and Mathias Waidele (KIS, Freiburg) for his feedback.
 
 # References
