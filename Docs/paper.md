@@ -16,7 +16,7 @@ affiliations:
  - name: Leibniz-institut für Sonnenphysik, Freiburg, Germany.
    index: 1
 
-date: 20 August 2020
+date: 25 August 2020
 
 bibliography: paper.bib
 ---
