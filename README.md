@@ -17,13 +17,21 @@ datetime
 ```
 
 ## Getting Started
-The package need not be installed as the installation scheme is not final yet. Follow these steps to start using the package.  
+
+### Installation
+
+The package need not be installed as the installation scheme is not final yet. Follow these steps to start using the package.
+
 1. Download the package and extract it to a directory of liking - `<User directory>/PyAstroPol`.  
 2. Add `<User directory>/PyAstroPol` to the `PYTHONPATH`.  
 
+### Examples
+
 [PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `IPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__. 
 
-As previously mentioned this is not a design software. Hence, one needs to know the optical system they wish to analyze. As per the framework of the optical system, there are thee types of objects :
+### Analysis on own
+
+As previously mentioned, this is not a design software. Hence, one needs to know the optical system they wish to analyze. As per the framework of the optical system, there are thee types of objects :
 1. Source  
 2. Components  
 3. Detector   
@@ -33,25 +41,25 @@ Following steps illustrate how to devise a simple optical system.
 ```python
 from PyAstroPol import * 
 ```  
-2. Create source, and optionally create a source for display. For analysis one can define a source with a lot of rays (say 10000), and for display one can define a source with fewer rays (say 10).  
+2. Create a source, and optionally create a source for display. For analysis one can define a source with a lot of rays (say 10000), and for display one can define a source with fewer rays (say 10).  
 ```python
-S_analysis = Source(10000, Clear=20)
-S_display = Source(10, Clear=20)
+S_analysis = Source(10000, Clear=20)   # Source for analysis, with 10k rays and 20 mm size
+S_display = Source(10, Clear=20)       # Source for disply, with 10 rays and 20 mm size
 ```  
 3. Create a component such as surface, lens etc., and position it. 
 ```python
-L = UncoatedLens(50, Thick=10, R1=200, R2=-200)
-L.translateOrigin(z=100.0)
+L = UncoatedLens(50, Thick=10, R1=200, R2=-200)   # Simple bi-convex lens of 50 mm size
+L.translateOrigin(z=100.0)                        # Move the lens from default position (origin)
 ```  
 4. Create a detector and position it.
 ```python
-D = Detector(50)
-D.translateOrigin(z=200.0)
+D = Detector(50)                # Detector of size 50 mm
+D.translateOrigin(z=200.0)      # Move the detector from default position (origin)
 ```  
 5. Put them together to create the optical system.
 ```python
 O_system = System(S_analysis, [L], D, dRays = S_display)
-O_system.propagateRays()
+O_system.propagateRays()                                        # Propagate rays in the optical system
 ```  
 6. Display the optical system using matplotlib 3d axis.
 ```python
@@ -62,7 +70,7 @@ plt.show()
 ```  
 7. Compute Mueller matrix and print it.
 ```python
-MM, T = O_system.getSystemMuellerMatrix()
+MM, T = O_system.getSystemMuellerMatrix()           # Compute Mueller matrix for the system
 print(MM)
 ```  
 ## Directories
