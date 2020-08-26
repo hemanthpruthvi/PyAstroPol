@@ -23,7 +23,7 @@ bibliography: paper.bib
 
 # Statement of Need
 
-Polarization analysis is one of the key aspects of the optical system analysis in astronomy (e.g., @TMT_2015 ; @DKIST_2016 ). Majority of the optical surfaces in astronomical instruments induce a change in state of polarization of incoming light, which could lead to inaccurate measurements of state of polarization or _polarimetry_. Hence, polarimetric instruments inevitably require the information of polarization properties of the optical system – _instrumental polarization_. It can be determined by means of experiments, analysis or a combination of both. As the telescopes become larger and instruments become more complex, instrumental polarization analysis has become all the more crucial (e.g.,  @TMT_2015 ; @DKIST_2016 ).  
+Polarization analysis is one of the key aspects of the optical system analysis in astronomy. Majority of the optical surfaces in astronomical instruments induce a change in state of polarization of incoming light, which could lead to inaccurate measurements of state of polarization or _polarimetry_. Hence, polarimetric instruments inevitably require the information of polarization properties of the optical system – _instrumental polarization_. It can be determined by means of experiments, analysis or a combination of both. As the telescopes become larger and instruments become more complex, instrumental polarization analysis has become all the more crucial (e.g.,  @TMT_2015 ; @DKIST_2016 ).  
 
 # Summary
 
