@@ -27,7 +27,7 @@ The package need not be installed as the installation scheme is not final yet. F
 
 ### Examples
 
-[PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains reveral examples files to demonstrate the applications of the package. They are provided in the form of `IPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__. 
+[PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains several examples files to demonstrate the applications of the package. They are provided in the form of `IPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__. 
 
 ### Analysis on own
 
@@ -79,12 +79,13 @@ print(MM)
 It is the main directory containing all the source files. For more information on the classes check the documentation at [`PyAstroPol/Docs/_build/html/PyAstroPol.html`](https://github.com/hemanthpruthvi/PyAstroPol/blob/master/Docs/_build/html/PyAstroPol.html).
 
 [PyAstroPol/Materials/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Materials)  
-It has the refractive index data for different materials in a formatted manner. These files are loaded by the code to look-up the refractive index information of the given material. Users cas easily create such files using following easy steps.
+It has the refractive index data for different materials in a formatted manner. These files are loaded by the code to look-up the refractive index information of the given material. Users can easily create such files using following steps.
 1. Download wavelength vs refractive index file as `.csv` from popular refractive index database [RefractiveIndexInfo](https://refractiveindex.info/).
 2. Rename the file to an appropriate material name e.g., for Aluminium the file name is `Al.csv`.
-3. Copy the `.csv` file into `./Materials/` directory.
+3. Copy the `.csv` file into `PyAstroPol/Materials/` directory.
 4. Format the material file using provided function i.e., `formatMaterialFile(MaterialName)` (without file extensions).
 5. The material is ready to be used by the code e.g., `M1 = Surface(50, n2='Al', Mirror=True)`.
+6. An [example](https://github.com/hemanthpruthvi/PyAstroPol/blob/master/Examples/09_FormatMaterialFile.ipynb) is also provided.
 
 [PyAstroPol/Docs/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Docs)  
 It contains documentation related codes and files.  
