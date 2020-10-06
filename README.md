@@ -103,6 +103,27 @@ Positive Declination : North
 Complex refractive index is __n-__*i*__k__ where __n__ and __k__ are positive real numbers.    
 Jones vectors corresponding to positive Stokes-V are <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{\sqrt 2} \begin{bmatrix} 1 \\ 0 \end{bmatrix}"> and <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{\sqrt 2} \begin{bmatrix} 0 \\ -i \end{bmatrix}">. 
 
+## Contributing
+Any mode of contribution is highly encouraged.
+1. Bug reporting : Open an issue in github with the following details.
+    - Description of the bug
+    - Python, numpy and matplotlib versions
+    - Operating system details
+    - Snippet of code causing the issue
+2. Feature request : Open an issue in github with the following details.
+    - Description of the feature
+    - Description of the application
+    - If possible, an example
+3. Example request : Open an issue in github with following details.
+    - Description of the application
+    - Expected output from the example
+4. Bug fixes : Open a pull request in github with following details.
+    - Description of the bug corresponding to the fix
+5. Feature addition : Open a pull request in github with following details.
+    - Description of the feature
+    - Description of the application
+    - At least one Example using the particular feature
+6. Other : Open an issue on github with a description.
 ## TODO
 1. Add polarizing elements such as birefringent elements, waveplates and polarizers.
 2. Add feature to create and save coatings as files.
