@@ -46,7 +46,7 @@ Salient features :
 - Material refractive index information, that can be downloaded from popular online source [https://refractiveindex.info/](https://refractiveindex.info/) as `.csv`, can be formatted and used with this package.   
 - Spot diagram is possible at any instance, as a by-product of ray tracing.   
 
-Results of the code have been verified against previous works (@Pruthvi2018), and ZEMAX&copy; OpticStudio – a popular commercial software. A variety of examples have been provided and they should facilitate the quick-start.
+Results of the code have been verified against previous works (@Pruthvi2018), and Zemax OpticStudio&reg; – a popular commercial software. A variety of examples have been provided and they should facilitate the quick-start.
 
 # Acknowledgements
 
