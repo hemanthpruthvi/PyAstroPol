@@ -149,3 +149,18 @@ class System():
         """
         self.Detector.tRays.drawSpotDiagram(Ax, 0, **kwargs)
         return
+
+    def getOutputPositionAngle(self):
+        """
+        |  Computes the position angle difference between the detector and output rays.
+        |  Returns : Position angle in degrees
+        """
+        if (self.Components[-1].Mirror):
+            OutputRays = self.Components[-1].rRays
+        else:
+            OutputRays = self.Components[-1].tRays
+        DOT = np.sum(self.Detector.xAxis*OutputRays.xAxis)
+        CROSSTemp = np.cross(self.Detector.xAxis, OutputRays.xAxis)
+        CROSS = np.sum(OutputRays.oAxis*CROSSTemp)
+        ThetaFinal = np.degrees(np.arctan2(CROSS, DOT))
+        return ThetaFinal

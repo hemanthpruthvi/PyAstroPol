@@ -9,7 +9,7 @@ import numpy as np
 import copy as cp
 import random as rd
 import matplotlib
-# matplotlib.use('TkAgg')
+# matplotlib.use('TkAgg') # Uncomment it when building the documentation!
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from datetime import datetime as dt
