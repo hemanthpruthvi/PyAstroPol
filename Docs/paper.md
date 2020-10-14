@@ -43,10 +43,10 @@ Salient features :
 - Off-axis components are facilitated, as they have a significant effect on polarization.   
 - Effect of multi-layered coatings, such as oxide layers and protective coatings, on the state of polarization is included. These are also significant in the polarization analysis of the astronomical optics (e.g., @VanHarten_2009).   
 - All the data such as points of incidence, polarization directions, complex electric field values and more, are readily available to the user for any further analysis.   
-- Material refractive index information, that can be downloaded from popular online source [https://refractiveindex.info/](https://refractiveindex.info/) as `.csv`, can be formatted and used with this package.   
+- Material refractive index information, that can be downloaded from the popular online source [https://refractiveindex.info/](https://refractiveindex.info/) as `.csv`, can be formatted and used with this package.   
 - Spot diagram is possible at any instance, as a by-product of ray tracing.   
 
-Usually, such analyses are carried out by devising telescope specific polarization models using scientific programming languages (open-source/commercial) and/or by utilizing commercially available analysis software (e.g., @TMT_2015, @DKIST_2016). Here, I attempt to draw the best of the both : open-source tools developed using scientifc programming language, with wide range of applications in modelling the astronomical optics. To my knowledge, there is no open-source software available with such polarization analysis features.
+Usually, such analyses are carried out by devising telescope specific polarization models using scientific programming languages (open-source/commercial) and/or by utilizing commercially available analysis software (e.g., @TMT_2015, @DKIST_2016). Here, I attempt to draw the best of the both : open-source tools developed using scientific programming language, with wide range of applications in modelling the astronomical optics. To my knowledge, there is no open-source software available with such polarization analysis features.
 
 Results of the code have been verified against previous works (@Pruthvi2018), and Zemax OpticStudio&reg; – a popular commercial software. A variety of examples have been provided and they should facilitate the quick-start. One of the examples also provides the aforementioned comparison with the Zemax OpticStudio&reg;.
 
