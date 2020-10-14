@@ -1,5 +1,5 @@
 ## References
-Although the materials are downloaded from [https://refractiveindex.info/](https://refractiveindex.info/), the original source of the data is very much different. They are listed here for the sake of reproducability.
+Although the materials are downloaded from [https://refractiveindex.info/](https://refractiveindex.info/), the original source of the data is very much different. They are listed here for the sake of reference and reproducability.
 
 **Ag** and **Al** : 
 McPeak et.al., 2015 ([DOI](https://doi.org/10.1021/ph5004237)).
