@@ -30,9 +30,9 @@ The instrumental polarization analysis is one of the key aspects of the optical 
 The Python package `PyAstroPol` provides a means to analyze the polarization properties of a given optical system with relative ease and minimal dependencies. The one simple goal is to calculate the Mueller matrix (e.g., @Gil_2016) of the optical system.  
 It can be easily distributed along with the polarization calibration routines. 
 
-In the polarization analysis of the astronomical telescopes, various approaches have been adopted considering the complexity of the system. A significant part of the complexity is due to the fact that the instrumental polarization is often time-dependent. For the solar telescopes with Coelostats, Mueller matrices were analytically derived as a function of time (e.g., @KTT_1985, @VTT_2005). For Thirty Meter Telescope (TMT), a combination of analytical and numerical methods is used (@TMT_2015). However, for Daniel K. Inouye Solar Telescope (DKIST), Zemax – a commercial software is used, along with the team's in-house tools (@DKIST_2016).
+In the polarization analysis of the astronomical telescopes, various approaches have been adopted considering the complexity of the system. A significant part of the complexity is because the instrumental polarization is often time-dependent. For the solar telescopes with Coelostats, Mueller matrices were analytically derived as a function of time (e.g., @KTT_1985, @VTT_2005). For Thirty Meter Telescope (TMT), a combination of analytical and numerical methods is used (@TMT_2015). However, for Daniel K. Inouye Solar Telescope (DKIST), Zemax – a commercial software is used, along with the team's in-house tools (@DKIST_2016).
 
-`PyAstroPol` aims to provide better parts of the aforementioned approaches: open-source tools developed using scientific programming language, with a range of applications in modelling the astronomical optics. There is no open-source software which has polarization ray propagation features as per my knowledge. Hence, Zemax OpticStudio&reg; modelling is used for the comparison. The salient features and important limitations are listed below.
+`PyAstroPol` aims to provide better parts of the aforementioned approaches: open-source tools developed using scientific programming language, with a range of applications in modelling the astronomical optics. There is no open-source software which has polarization ray propagation features as per my knowledge. Hence, Zemax OpticStudio&reg; modelling is used for comparison. The salient features and important limitations are listed below.
 
 Salient features :   
 - Calculation of the Mueller matrix of a given optical system is a simple and only end goal. Rest are the by-products of such analysis. The system Mueller matrix is computed by coherently adding the electric field vectors after propagation. It implies that the system is imaging type, which is commonplace in astronomy.   
@@ -50,7 +50,7 @@ Important Limitations :
 - The visualization features are limited.
 - It is neither a design software nor interactive. That is, the user must know the optical system that is to be analyzed, and the system must be updated every time a component is changed.
 
-Results of the code have been verified against previous works (@Pruthvi_2018), and Zemax OpticStudio&reg;. A variety of examples have been provided, and they should facilitate the quick-start. One of the examples also provides the aforementioned comparison with the commercial software. 
+Results of the code have been verified against previous works (@Pruthvi_2018), and Zemax OpticStudio&reg;. A variety of examples have been provided, and they should facilitate the quick-start. One of the examples also provides the aforementioned comparison with commercial software. 
 
 # Acknowledgements
 
