@@ -5,14 +5,17 @@
 |  Description : Frequently used functions in other codes
 """
 import os
-import numpy as np
 import copy as cp
 import random as rd
+from datetime import datetime as dt
+import warnings
+warnings.filterwarnings("ignore", category=RuntimeWarning)
+#
+import numpy as np
 import matplotlib
 # matplotlib.use('TkAgg') # Uncomment it when building the documentation!
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from datetime import datetime as dt
 EPS = 1e-30 
 
 def normalize3DVectors(V):

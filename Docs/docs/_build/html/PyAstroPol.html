@@ -1,0 +1,1087 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PyAstroPol package &mdash; PyAstroPol 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="About the Package" href="Info.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyAstroPol
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Info.html">About the Package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PyAstroPol package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyAstroPol.Coating">PyAstroPol.Coating module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyAstroPol.Elements">PyAstroPol.Elements module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyAstroPol.Functions">PyAstroPol.Functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyAstroPol.Material">PyAstroPol.Material module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyAstroPol.Source">PyAstroPol.Source module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyAstroPol.Surface">PyAstroPol.Surface module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyAstroPol.System">PyAstroPol.System module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyAstroPol">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyAstroPol</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>PyAstroPol package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/PyAstroPol.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pyastropol-package">
+<h1>PyAstroPol package<a class="headerlink" href="#pyastropol-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyAstroPol.Coating">
+<span id="pyastropol-coating-module"></span><h2>PyAstroPol.Coating module<a class="headerlink" href="#module-PyAstroPol.Coating" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Author : Hemanth Pruthvi</div>
+<div class="line">File name : Coating.py</div>
+<div class="line">Package : PyAstroPol</div>
+<div class="line">Description : Coating and related classes</div>
+</div>
+<dl class="py class">
+<dt id="PyAstroPol.Coating.Coating">
+<em class="property">class </em><code class="sig-prename descclassname">PyAstroPol.Coating.</code><code class="sig-name descname">Coating</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">RI</span></em>, <em class="sig-param"><span class="n">Thick</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Coating.Coating" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">Effects of multi-layer coating on polarization of transmission and reflections.</div>
+<div class="line">For geometric ray tracing purposes, their thickness will be neglected. </div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : General</div>
+<div class="line">Layers   : String array (N,1)    : Array of names of materials of all the layers</div>
+<div class="line">RI       : Complex Float (N,1)   : Array of refractive indiced of all the layers</div>
+<div class="line">Thick    : Float (N,1)           : Array of thicknesses of all the layers</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : Polarization</div>
+<div class="line">rs : FloatComplex(N,1) : Complex coefficient of reflection for s-polarization of all Rays </div>
+<div class="line">rp : FloatComplex(N,1) : Complex coefficient of reflection for p-polarization of all Rays </div>
+<div class="line">ts : FloatComplex(N,1) : Complex coefficient of transmission for s-polarization of all Rays </div>
+<div class="line">tp : FloatComplex(N,1) : Complex coefficient of transmission for p-polarization of all Rays</div>
+</div>
+<dl class="py method">
+<dt id="PyAstroPol.Coating.Coating.applyToSurface">
+<code class="sig-name descname">applyToSurface</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Surf</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Coating.Coating.applyToSurface" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Apply defined Coating to given surface, and compute the effects on transmission and reflection.</div>
+<div class="line">Input : Surface() to which coating it to be applied. </div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Coating.Coating.loadRefractiveIndex">
+<code class="sig-name descname">loadRefractiveIndex</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Coating.Coating.loadRefractiveIndex" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Load refractive index according to given information on layer material and wavelength. </div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Coating.Coating.reverseTheCoating">
+<code class="sig-name descname">reverseTheCoating</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Coating.Coating.reverseTheCoating" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Reverse the coating layers order along with their thicknesses.</div>
+<div class="line">This feature might be useful for elements such as coated lens.</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-PyAstroPol.Elements">
+<span id="pyastropol-elements-module"></span><h2>PyAstroPol.Elements module<a class="headerlink" href="#module-PyAstroPol.Elements" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Author : Hemanth Pruthvi</div>
+<div class="line">File name : Elements.py</div>
+<div class="line">Package : PyAstroPol</div>
+<div class="line">Description : Detector, Lens and likewise classes of optical elelements</div>
+</div>
+<dl class="py class">
+<dt id="PyAstroPol.Elements.Detector">
+<em class="property">class </em><code class="sig-prename descclassname">PyAstroPol.Elements.</code><code class="sig-name descname">Detector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Dia</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Elements.Detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyAstroPol.Surface.Surface" title="PyAstroPol.Surface.Surface"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyAstroPol.Surface.Surface</span></code></a></p>
+<div class="line-block">
+<div class="line">Plane Surface() with no special attributes.</div>
+<div class="line">Created for the purpose of easily specifying detector.</div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="PyAstroPol.Elements.UncoatedLens">
+<em class="property">class </em><code class="sig-prename descclassname">PyAstroPol.Elements.</code><code class="sig-name descname">UncoatedLens</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Dia</span></em>, <em class="sig-param"><span class="n">Thick</span></em>, <em class="sig-param"><span class="n">R1</span><span class="o">=</span><span class="default_value">inf</span></em>, <em class="sig-param"><span class="n">R2</span><span class="o">=</span><span class="default_value">inf</span></em>, <em class="sig-param"><span class="n">K1</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">K2</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">1.5 + 0j</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Elements.UncoatedLens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">A simple singlet lens containing two uncoated surfaces</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes: General</div>
+<div class="line">S1 : Surface() : Front surface</div>
+<div class="line">S2 : Surface() : Back surface</div>
+<div class="line">Thick : Float : Thickness of the lens (redundant)</div>
+</div>
+<dl class="py method">
+<dt id="PyAstroPol.Elements.UncoatedLens.draw">
+<code class="sig-name descname">draw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Elements.UncoatedLens.draw" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw the element in 3D.</div>
+<div class="line">Inputs : Pyplot Axis, kwargs that are directly pass to plot function.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Elements.UncoatedLens.drawRays">
+<code class="sig-name descname">drawRays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Elements.UncoatedLens.drawRays" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw incident rays to the Surfaces of the element.</div>
+<div class="line">Inputs : Pyplot Axis, kwargs that are directly pass to plot function.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Elements.UncoatedLens.propagateRays">
+<code class="sig-name descname">propagateRays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Rays</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Elements.UncoatedLens.propagateRays" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Propagate given Rays through the element.</div>
+<div class="line">Specify a Rays() for the input. </div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Elements.UncoatedLens.rotateAboutX">
+<code class="sig-name descname">rotateAboutX</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaX</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Elements.UncoatedLens.rotateAboutX" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the element about global X-axis relative to present position.</div>
+<div class="line">Input : X-rotation angle in degrees</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Elements.UncoatedLens.rotateAboutY">
+<code class="sig-name descname">rotateAboutY</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaY</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Elements.UncoatedLens.rotateAboutY" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the element about global Y-axis relative to present position.</div>
+<div class="line">Input : Y-rotation angle in degrees</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Elements.UncoatedLens.rotateAboutZ">
+<code class="sig-name descname">rotateAboutZ</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaZ</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Elements.UncoatedLens.rotateAboutZ" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the element about global Z-axis relative to present position.</div>
+<div class="line">Input : Z-rotation angle in degrees</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Elements.UncoatedLens.translateOrigin">
+<code class="sig-name descname">translateOrigin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">z</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Elements.UncoatedLens.translateOrigin" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Translate the element relative to present position.</div>
+<div class="line">Inputs : X translation, Y translation and Z translation.</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-PyAstroPol.Functions">
+<span id="pyastropol-functions-module"></span><h2>PyAstroPol.Functions module<a class="headerlink" href="#module-PyAstroPol.Functions" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Author : Hemanth Pruthvi</div>
+<div class="line">File name : Functions.py</div>
+<div class="line">Package : PyAstroPol</div>
+<div class="line">Description : Frequently used functions in other codes</div>
+</div>
+<dl class="py function">
+<dt id="PyAstroPol.Functions.MuellerRotationMatrix">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">MuellerRotationMatrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Theta</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.MuellerRotationMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Compute Mueller matrix for rotation.</div>
+<div class="line">Input : Angle in degrees.</div>
+<div class="line">Returns : 4x4 Mueller matrix.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.adjustAspect">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">adjustAspect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">x</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">z</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.adjustAspect" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Set aspect ratio of 3d axes to 1:1:1, and specify the space to be displayed.</div>
+<div class="line">Inputs : Pyplot Axis, Size of space, X-coordinate of the center, Y-coordinate of the center, Z-coordinate of the center.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.applyPointTransformation">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">applyPointTransformation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">P</span></em>, <em class="sig-param"><span class="n">M</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.applyPointTransformation" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Apply transformation matrix to set of points.</div>
+<div class="line">Inputs : Array of points, and 4x4 transformation matrix.</div>
+<div class="line">Returns : Array of points, same size as input.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.applyVectorTransformation">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">applyVectorTransformation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">V</span></em>, <em class="sig-param"><span class="n">M</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.applyVectorTransformation" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Apply transformation matrix to set of vectors.</div>
+<div class="line">Inputs : Array of vectors, and 4x4 transformation matrix.</div>
+<div class="line">Returns : Array of vectors, same size as input.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.dot3DVectors">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">dot3DVectors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">V1</span></em>, <em class="sig-param"><span class="n">V2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.dot3DVectors" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Dot product of two arrays of 3D vectors, formatted to match code’s convention.</div>
+<div class="line">Inputs : Array of 3d vectors, Array of 3d vectors.</div>
+<div class="line">Returns : Array of 3d vectors same size as input.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.formatMaterialFile">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">formatMaterialFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.formatMaterialFile" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Format the material file ‘.csv’ that is downloaded from refractiveindex.info, to comply with the code. The file should be copied into “Materials” folder.</div>
+<div class="line">Input : Material name without extension.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.getTranslationMatrix">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">getTranslationMatrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">z</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.getTranslationMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Calculate 4x4 affine translation matrix, to move w.r.t. present position.</div>
+<div class="line">Inputs : X translation, Y translation and Z translation.</div>
+<div class="line">Returns : 4x4 transformation matrix.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.getXRotationMatrix">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">getXRotationMatrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaX</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.getXRotationMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Calculate 4x4 affine rotation matrix, to rotate about X-axis.</div>
+<div class="line">Inputs : X rotation angle in degrees.</div>
+<div class="line">Returns : 4x4 transformation matrix.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.getYRotationMatrix">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">getYRotationMatrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaY</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.getYRotationMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Calculate 4x4 affine rotation matrix, to rotate about Y-axis.</div>
+<div class="line">Inputs : Y rotation angle in degrees.</div>
+<div class="line">Returns : 4x4 transformation matrix.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.getZRotationMatrix">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">getZRotationMatrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaZ</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.getZRotationMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Calculate 4x4 affine rotation matrix, to rotate about Z-axis.</div>
+<div class="line">Inputs : Z rotation angle in degrees.</div>
+<div class="line">Returns : 4x4 transformation matrix.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.normalize3DVectors">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">normalize3DVectors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">V</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.normalize3DVectors" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Normalize array of 3d vectors to get corresponding unit vectors.</div>
+<div class="line">Inputs : Array of 3D vectors.</div>
+<div class="line">Returns : Array of 3D vectors same size as input.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.rotateMuellerMatrix">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">rotateMuellerMatrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">M</span></em>, <em class="sig-param"><span class="n">Theta</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.rotateMuellerMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Compute Mueller matrix after rotation.</div>
+<div class="line">Input : 4x4 Mueller matrix, Rotation angle in degrees.</div>
+<div class="line">Returns : 4x4 Mueller matrix.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.roundOffDisplay">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">roundOffDisplay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">D</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.roundOffDisplay" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Set the number of decimals to display while printing.</div>
+<div class="line">Input : Integer number of decimals.</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="PyAstroPol.Functions.vectorToAngles">
+<code class="sig-prename descclassname">PyAstroPol.Functions.</code><code class="sig-name descname">vectorToAngles</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">V</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Functions.vectorToAngles" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotation angles about Y and X axes (in that order) to rotate “Z” vector to “V” vector.</div>
+<div class="line">Input : Array of vectors.</div>
+<div class="line">Returns : Array of Y-rotation angles, Array of X-rotation angles in degrees.</div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-PyAstroPol.Material">
+<span id="pyastropol-material-module"></span><h2>PyAstroPol.Material module<a class="headerlink" href="#module-PyAstroPol.Material" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Author : Hemanth Pruthvi</div>
+<div class="line">File name : Material.py</div>
+<div class="line">Package : PyAstroPol</div>
+<div class="line">Description : Material class, for the sake of refractive index</div>
+</div>
+<dl class="py class">
+<dt id="PyAstroPol.Material.Material">
+<em class="property">class </em><code class="sig-prename descclassname">PyAstroPol.Material.</code><code class="sig-name descname">Material</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">MaterialName</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Material.Material" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">Simple material definition, data is read from ‘.csv’ material file.</div>
+<div class="line">Attributes : General</div>
+<div class="line">Wavelength : Float(N, 1) : Wavelengths</div>
+<div class="line">RI : ComplexFloat(N, 1) : Refractive index at given wavelengths</div>
+</div>
+<dl class="py method">
+<dt id="PyAstroPol.Material.Material.getRefractiveIndexAt">
+<code class="sig-name descname">getRefractiveIndexAt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Wave</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Material.Material.getRefractiveIndexAt" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Calculate refractive index for a given wavelength by interpolation</div>
+<div class="line">Input : Wavelength</div>
+<div class="line">Returns : Complex refractive index</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-PyAstroPol.Source">
+<span id="pyastropol-source-module"></span><h2>PyAstroPol.Source module<a class="headerlink" href="#module-PyAstroPol.Source" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Author : Hemanth Pruthvi</div>
+<div class="line">File name : Source.py</div>
+<div class="line">Package : PyAstroPol</div>
+<div class="line">Description : Rays, Source and likewise classes</div>
+</div>
+<dl class="py class">
+<dt id="PyAstroPol.Source.AstroSource">
+<em class="property">class </em><code class="sig-prename descclassname">PyAstroPol.Source.</code><code class="sig-name descname">AstroSource</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">NRays</span></em>, <em class="sig-param"><span class="n">HA</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">Dec</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">Lat</span><span class="o">=</span><span class="default_value">30.0</span></em>, <em class="sig-param"><span class="n">Clear</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">Dist</span><span class="o">=</span><span class="default_value">1000.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.AstroSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyAstroPol.Source.Source" title="PyAstroPol.Source.Source"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyAstroPol.Source.Source</span></code></a></p>
+<div class="line-block">
+<div class="line">AstroSource definition with Source() as parent</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : Special</div>
+<div class="line">HourAngle : Float : Hour angle of the source</div>
+<div class="line">Declination : Float : Declination of the source</div>
+<div class="line">Latitude : Float : Latitute of observation</div>
+<div class="line">Distance : Float : Distance of the astronomcial source from the global origin</div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="PyAstroPol.Source.Rays">
+<em class="property">class </em><code class="sig-prename descclassname">PyAstroPol.Source.</code><code class="sig-name descname">Rays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Rays" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Rays definition with Point-Eiknol formulation.</p>
+<div class="line-block">
+<div class="line">Attributes : General</div>
+<div class="line">NRays : Int : Number of rays</div>
+<div class="line">Wavelength : Float : Wavelength in microns</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : References</div>
+<div class="line">Origin : Float(1,3) : Starting point of cheif-ray</div>
+<div class="line">xAxis : Float(1,3) : DC of supposed x-axis</div>
+<div class="line">yAxis : Float(1,3) : DC of supposed y-axis</div>
+<div class="line">oAxis : Float(1,3) : DC of optical axis i.e., direction of chief ray</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : Set of points and cosines</div>
+<div class="line">Points : Float(N,3) : Starting points of rays</div>
+<div class="line">xCosines : Float(N,3) : DC of x-polarization direction for all rays</div>
+<div class="line">yCosines : Float(N,3) : DC of y-polarization direction for all rays</div>
+<div class="line">oCosines : Float(N,3) : DC of propagation direction for all rays</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : Electric field</div>
+<div class="line">Ex : ComplexFloat(N,1) : Electric field for each ray, in x-direction</div>
+<div class="line">Ey : ComplexFloat(N,1) : Electric field for each ray, in y-direction</div>
+</div>
+<div class="line-block">
+<div class="line">(x,y,o) are orthonormal basis for a right handed coordinate system</div>
+</div>
+<dl class="py method">
+<dt id="PyAstroPol.Source.Rays.computeRMSRadius">
+<code class="sig-name descname">computeRMSRadius</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Distance</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Rays.computeRMSRadius" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Computes RMS spot radius for the beam at a distance from the origin along the optical axis.</div>
+<div class="line">Inputs :  Distance at which RMS spot is to be computed.</div>
+<div class="line">Returns : RMS spot radius.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Rays.createPolarization">
+<code class="sig-name descname">createPolarization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ex</span></em>, <em class="sig-param"><span class="n">Ey</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Rays.createPolarization" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Assign given complex electric fields to all the rays to create polarized light.</div>
+<div class="line">Input : Complex electric field in X direction, Complex electric field in Y direction.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Rays.drawRays">
+<code class="sig-name descname">drawRays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="n">Length</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Rays.drawRays" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw all the rays to a distance along the optical axis from the origin.</div>
+<div class="line">Input : Pyplot axis, Distance to which rays are to be drawn, kwargs are directly passed to plot function.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Rays.drawSpotDiagram">
+<code class="sig-name descname">drawSpotDiagram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="n">Length</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Rays.drawSpotDiagram" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw the spot diagram, at a distance along the optical axis from the origin.</div>
+<div class="line">Input : Pyplot axis, Distance at which spot diagram is to be drawn, kwargs are directly passed to plot function.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Rays.drawXYAxes">
+<code class="sig-name descname">drawXYAxes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="n">LengthR</span></em>, <em class="sig-param"><span class="n">LengthP</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Rays.drawXYAxes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw the local X and Y axes for all the rays, at a distance along the optical axis from the origin.</div>
+<div class="line">Input : Pyplot axis, Distance at which axes are to be drawn, Length of axes, kwargs are directly passed to plot function.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Rays.getStokesVector">
+<code class="sig-name descname">getStokesVector</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Rays.getStokesVector" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Compute Stokes vector for the whole beam.</div>
+<div class="line">Returns : Normalized Stokes vector, total intenisty</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Rays.propagateRays">
+<code class="sig-name descname">propagateRays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Distance</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Rays.propagateRays" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Propagates all the rays to a distance along the optical axis from the origin.</div>
+<div class="line">Input : Distance to which rays are to be propagated.</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="PyAstroPol.Source.Source">
+<em class="property">class </em><code class="sig-prename descclassname">PyAstroPol.Source.</code><code class="sig-name descname">Source</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">NRays</span></em>, <em class="sig-param"><span class="n">Type</span><span class="o">=</span><span class="default_value">'Collimated'</span></em>, <em class="sig-param"><span class="n">Clear</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">FNum</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">Random</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PyAstroPol.Source.Rays" title="PyAstroPol.Source.Rays"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyAstroPol.Source.Rays</span></code></a></p>
+<div class="line-block">
+<div class="line">Source definition with Rays() as parent</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : Special</div>
+<div class="line">Type : Enumerated string : “collimated” or “point” sources</div>
+<div class="line">FNum : Float : Focal ratio of the beam, only used for point sources</div>
+<div class="line">Clear : Float : Clear aperture for the distribution of rays, only used in collimated sources</div>
+<div class="line">Random : Bool : Ray distrbution, if not True rays are distributed in ring fashion with quasi-uniform density</div>
+</div>
+<dl class="py method">
+<dt id="PyAstroPol.Source.Source.applyTransformation">
+<code class="sig-name descname">applyTransformation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">M</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Source.applyTransformation" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Apply affine transformation to the Source and its constitutents.</div>
+<div class="line">Input : 4x4 matrix.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Source.makeOrigin">
+<code class="sig-name descname">makeOrigin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">NewOrigin</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Source.makeOrigin" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Translate the Source in such a way that its Origin is at the given point.</div>
+<div class="line">Input : Coordinates of the new Origin.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Source.pointToDirection">
+<code class="sig-name descname">pointToDirection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">NewNormal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Source.pointToDirection" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the Source in such a way that its oAxis is along the given normal.</div>
+<div class="line">Input : Direction cosines of the new oAxis.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Source.rotateAboutX">
+<code class="sig-name descname">rotateAboutX</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaX</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Source.rotateAboutX" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the Source and its constitutents about global X-axis.</div>
+<div class="line">Input : X rotation angle in degrees.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Source.rotateAboutY">
+<code class="sig-name descname">rotateAboutY</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaY</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Source.rotateAboutY" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the Source and its constitutents about global Y-axis.</div>
+<div class="line">Input : Y rotation angle in degrees.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Source.rotateAboutZ">
+<code class="sig-name descname">rotateAboutZ</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaZ</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Source.rotateAboutZ" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the Source and its constitutents about global Z-axis.</div>
+<div class="line">Input : Z rotation angle in degrees.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Source.Source.translateOrigin">
+<code class="sig-name descname">translateOrigin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">z</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Source.Source.translateOrigin" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Move the Source and its constitutents relative to their current position.</div>
+<div class="line">Shifting the Origin of this Source.</div>
+<div class="line">Inputs : X translation, Y translation and Z translation.</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-PyAstroPol.Surface">
+<span id="pyastropol-surface-module"></span><h2>PyAstroPol.Surface module<a class="headerlink" href="#module-PyAstroPol.Surface" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Author : Hemanth Pruthvi</div>
+<div class="line">File name : Surface.py</div>
+<div class="line">Package : PyAstroPol</div>
+<div class="line">Description : Surface class, basis for all the elements.</div>
+</div>
+<dl class="py class">
+<dt id="PyAstroPol.Surface.Surface">
+<em class="property">class </em><code class="sig-prename descclassname">PyAstroPol.Surface.</code><code class="sig-name descname">Surface</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Dia</span></em>, <em class="sig-param"><span class="n">R</span><span class="o">=</span><span class="default_value">inf</span></em>, <em class="sig-param"><span class="n">K</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">Mirror</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">iDia</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">OffAxis</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">OffAxDist</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">OffAxAz</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">n1</span><span class="o">=</span><span class="default_value">1 + 0j</span></em>, <em class="sig-param"><span class="n">n2</span><span class="o">=</span><span class="default_value">1.5 + 0j</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">General purpose Surface definition.</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : General</div>
+<div class="line">Aperture : Float : Diameter size (only circular is considered) </div>
+<div class="line">Origin : Float(1,3) : Center of the aperture (circle)</div>
+<div class="line">oAxis : Float(1,3) : DC of Optical axis i.e., normal to surface, at Origin, pointing towards the direction of the incidence</div>
+<div class="line">Curvature : Float : Radius of curvature of the surface</div>
+<div class="line">Conic : Float : Conic constant of the surface</div>
+<div class="line">SurfaceMatrix : Float(4,4) : Matrix representation of coefficients of the surface equation </div>
+<div class="line">iRI : FloatComplex : Refractive index of the incident medium</div>
+<div class="line">tRI : FloatComplex : Refrative index of the transmitting medium</div>
+<div class="line">iMU : FloatComplex : Magnetic permeability of the incident medium</div>
+<div class="line">tMU : FloatComplex : Magnetic permeability of the transmitting medium</div>
+<div class="line">Mirror : Bool : Is it only reflecting or only transmitting?</div>
+<div class="line">IncidentPoints : Float(N,3) : Points on the surface corresponding to incidence of Rays</div>
+<div class="line">nCosines : Float(N,3) : DC of the normals to the surface at the points of ray incidences </div>
+<div class="line">tCosines : Float(N,3) : DC of the tangents to the surface at the points of ray incidences</div>
+<div class="line">Mask : Bool(N,1) : Array representing whether given rays are hitting the surface or not</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : Polarization</div>
+<div class="line">sCosines : Float(N,3) :  DC of the s-polarization direction to the surface for the Rays</div>
+<div class="line">pCosines_i : Float(N,3) : DC of the p-polarization direction to the surface, for the incident rays </div>
+<div class="line">pCosines_r : Float(N,3) : DC of the p-polarization direction to the surface, for the reflected rays</div>
+<div class="line">pCosines_t : Float(N,3) : DC of the p-polarization direction to the surface, for the transmitted rays</div>
+<div class="line">rs : FloatComplex(N,1) : Complex coefficient of reflection for s-polarization of all Rays </div>
+<div class="line">rp : FloatComplex(N,1) : Complex coefficient of reflection for p-polarization of all Rays </div>
+<div class="line">ts : FloatComplex(N,1) : Complex coefficient of transmission for s-polarization of all Rays </div>
+<div class="line">tp : FloatComplex(N,1) : Complex coefficient of transmission for p-polarization of all Rays</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : Objects</div>
+<div class="line">iRays : Rays() : Incident rays</div>
+<div class="line">rRays : Rays() : Reflected rays</div>
+<div class="line">tRays : rays() : Transmitted rays</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : Only for drawing</div>
+<div class="line">X : Float(N,1) : X-coordinates of the points used for rendering the surface</div>
+<div class="line">Y : Float(N,1) : Y-coordinates of the points used for rendering the surface</div>
+<div class="line">Z : Float(N,1) : Z-coordinates of the points used for rendering the surface</div>
+</div>
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.applyTransformation">
+<code class="sig-name descname">applyTransformation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">M</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.applyTransformation" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Apply affine transformation to the Surface and its constitutents.</div>
+<div class="line">Input : 4x4 matrix.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.computeIncidence">
+<code class="sig-name descname">computeIncidence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Rays</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.computeIncidence" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Computes the parameters related to ray incidence on the Surfce, points and angles etc.</div>
+<div class="line">Internal function for computations.</div>
+<div class="line">Input : Rays() object.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.computeNormals">
+<code class="sig-name descname">computeNormals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.computeNormals" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Computes the Normal vectors on the Surfce at the points of incidence of Rays.</div>
+<div class="line">Internal function for computations.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.draw">
+<code class="sig-name descname">draw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.draw" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw the Surface using points computed for its rendering.</div>
+<div class="line">Input : Pyplot axis, kwargs are directly passed to plot function.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.drawPolarizationDirection">
+<code class="sig-name descname">drawPolarizationDirection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="n">LengthR</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.drawPolarizationDirection" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw the s- and p-polarization directions for all the Rays at the Surface.</div>
+<div class="line">Input : Pyplot axis, Length of vectors, kwargs are directly passed to plot function.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.drawRays">
+<code class="sig-name descname">drawRays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.drawRays" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw the Rays to the Surface after propagation.</div>
+<div class="line">Input : Pyplot axis, kwargs are directly passed to plot function.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.drawSurfaceNormals">
+<code class="sig-name descname">drawSurfaceNormals</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="n">Length</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.drawSurfaceNormals" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw the normal vectors to the Surface at the points of incidence of Rays.</div>
+<div class="line">Input : Pyplot axis, Length of the normal vector, kwargs are directly passed to plot function.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.loadRefractiveIndex">
+<code class="sig-name descname">loadRefractiveIndex</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Wave</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.loadRefractiveIndex" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Loads the refractive index for the given wavelength from Material.</div>
+<div class="line">Internal function for computations.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.makeOrigin">
+<code class="sig-name descname">makeOrigin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">NewOrigin</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.makeOrigin" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Translate the Surface in such a way that its Origin is at the given point.</div>
+<div class="line">Input : Coordinates of the new Origin.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.pointToDirection">
+<code class="sig-name descname">pointToDirection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">NewNormal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.pointToDirection" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the Surface in such a way that its oAxis is along the given normal.</div>
+<div class="line">Input : Direction cosines of the new oAxis.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.propagatePolarization">
+<code class="sig-name descname">propagatePolarization</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.propagatePolarization" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Computes the effects of propagation on the state of polarization of the Rays.</div>
+<div class="line">Internal function for computations.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.propagateRays">
+<code class="sig-name descname">propagateRays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Rays</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.propagateRays" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Propagates the Rays through the Surface considering a number of effects.</div>
+<div class="line">Input : Rays() object.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.propagateReflectedRays">
+<code class="sig-name descname">propagateReflectedRays</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.propagateReflectedRays" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Computes the parameters for the reflected part of Rays from the Surface.</div>
+<div class="line">Internal function for computations.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.propagateTransmittedRays">
+<code class="sig-name descname">propagateTransmittedRays</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.propagateTransmittedRays" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Computes the parameters for the transmitted part of Rays from the Surface.</div>
+<div class="line">Internal function for computations.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.renderSurface">
+<code class="sig-name descname">renderSurface</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rRes</span></em>, <em class="sig-param"><span class="n">thetaRes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.renderSurface" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Calculate points on the Surface that can be used to render it.</div>
+<div class="line">It is an internal function used by code.</div>
+<div class="line">Inputs : Number of radial segments (resolution), Number of angular segments.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.rotateAboutX">
+<code class="sig-name descname">rotateAboutX</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaX</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.rotateAboutX" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the Surface and its constitutents about global X-axis.</div>
+<div class="line">Input : X rotation angle in degrees.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.rotateAboutY">
+<code class="sig-name descname">rotateAboutY</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaY</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.rotateAboutY" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the Surface and its constitutents about global Y-axis.</div>
+<div class="line">Input : Y rotation angle in degrees.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.rotateAboutZ">
+<code class="sig-name descname">rotateAboutZ</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ThetaZ</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.rotateAboutZ" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Rotate the Surface and its constitutents about global Z-axis.</div>
+<div class="line">Input : Z rotation angle in degrees.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.Surface.Surface.translateOrigin">
+<code class="sig-name descname">translateOrigin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">z</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.Surface.Surface.translateOrigin" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Move the Surface and its constitutents relative to their current position.</div>
+<div class="line">Shifting the Origin of this Surface.</div>
+<div class="line">Inputs : X translation, Y translation and Z translation.</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-PyAstroPol.System">
+<span id="pyastropol-system-module"></span><h2>PyAstroPol.System module<a class="headerlink" href="#module-PyAstroPol.System" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Author : Hemanth Pruthvi</div>
+<div class="line">File name : System.py</div>
+<div class="line">Package : PyAstroPol</div>
+<div class="line">Description : Optical system class</div>
+</div>
+<dl class="py class">
+<dt id="PyAstroPol.System.System">
+<em class="property">class </em><code class="sig-prename descclassname">PyAstroPol.System.</code><code class="sig-name descname">System</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Source</span></em>, <em class="sig-param"><span class="n">Components</span></em>, <em class="sig-param"><span class="n">Detector</span></em>, <em class="sig-param"><span class="n">dRays</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.System.System" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">System class it provided to do all the propagation related activites as once.</div>
+<div class="line">Once the Source, Elements and Detector are defined, they are to be passed to this calss.</div>
+<div class="line">There a provision to provide a seperate Source for the sake of display.</div>
+<div class="line">In this way, analysis can be done with large number of rays and fewer rays can be used for display.</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes: Objects</div>
+<div class="line">Source : Source() : Source for analysis purposes</div>
+<div class="line">Components : N x Surface() : Surface/Lens/Component</div>
+<div class="line">Detector : Detector() : Detector</div>
+<div class="line">dRays : Source() : Source for display puposes</div>
+</div>
+<div class="line-block">
+<div class="line">Attributes : General</div>
+<div class="line">MuellerMatrix : Float(4,4) : Mueller matrix of the whole system</div>
+<div class="line">Transmission : Float : Total fractional throughput of the system.</div>
+</div>
+<dl class="py method">
+<dt id="PyAstroPol.System.System.draw">
+<code class="sig-name descname">draw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="n">clear</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.System.System.draw" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw the optical System.</div>
+<div class="line">Input : Pyplot axis, option to clear the previous plots.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.System.System.drawSpotDiagram">
+<code class="sig-name descname">drawSpotDiagram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Ax</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.System.System.drawSpotDiagram" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Draw the spot diagram as seen on the detector.</div>
+<div class="line">Input : Pyplot axis, kwargs are directly passed to plot function.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.System.System.getOutputPositionAngle">
+<code class="sig-name descname">getOutputPositionAngle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.System.System.getOutputPositionAngle" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Computes the position angle difference between the detector and output rays.</div>
+<div class="line">Returns : Position angle in degrees</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.System.System.getSystemMuellerMatrix">
+<code class="sig-name descname">getSystemMuellerMatrix</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.System.System.getSystemMuellerMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Computes the Mueller matrix for the System with following formulation. </div>
+</div>
+<div class="line-block">
+<div class="line">Four minimum Stokes inputs :</div>
+<div class="line">In_1 : [1,  1, 0, 0],  Ex_1 = 1.0 + 0.0j,  Ey_1 = 0.0 + 0.0j</div>
+<div class="line">In_2 : [1, -1, 0, 0],  Ex_1 = 0.0 + 0.0j,  Ey_1 = 1.0 + 0.0j</div>
+<div class="line">In_3 : [1,  0, 1, 0],  Ex_1 = 0.707 + 0.0j,  Ey_1 = 0.707 + 0.0j</div>
+<div class="line">In_4 : [1,  0, 0, 1],  Ex_1 = 0.707 + 0.0j,  Ey_1 = 0.0 - 0.707j</div>
+</div>
+<div class="line-block">
+<div class="line">Four Stokes outputs as linear combination of Mueller matrix elements :</div>
+<div class="line">Out_1 : [M_00+M_10, M_01+M_11, M_02+M_12, M_03+M_13]</div>
+<div class="line">Out_2 : [M_00-M_10, M_01-M_11, M_02-M_12, M_03-M_13]</div>
+<div class="line">Out_3 : [M_00+M_20, M_01+M_21, M_02+M_22, M_03+M_23]</div>
+<div class="line">Out_4 : [M_00+M_30, M_01+M_31, M_02+M_32, M_03+M_33]</div>
+</div>
+<div class="line-block">
+<div class="line">System Mueller matrix elements : </div>
+<div class="line">[M_00, M_01, M_02, M_03] = 0.5*(Out_1 + Out_2)</div>
+<div class="line">[M_10, M_11, M_12, M_13] = 0.5*(Out_1 - Out_2)</div>
+<div class="line">[M_20, M_21, M_22, M_23] = Out_3 - 0.5*(Out_1 + Out_2)</div>
+<div class="line">[M_30, M_31, M_32, M_33] = Out_4 - 0.5*(Out_1 + Out_2)</div>
+</div>
+<div class="line-block">
+<div class="line">Returns : 4x4 Mueller matrix of the System, Transmitted fractional intensity</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="PyAstroPol.System.System.propagateRays">
+<code class="sig-name descname">propagateRays</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyAstroPol.System.System.propagateRays" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Propagates the Rays through the System considering a number of effects.</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-PyAstroPol">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-PyAstroPol" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="Info.html" class="btn btn-neutral float-left" title="About the Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Hemanth Pruthvi
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

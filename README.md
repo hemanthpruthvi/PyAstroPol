@@ -5,26 +5,38 @@ Instrumental Polarization Analysis of Astronomical Optics
 The package has one simple goal : compute 4x4 Mueller matrix for the given optical system, and it is developed keeping astronomical optics in view.
 It uses geomatric optics approach i.e., all the analysis uses strictly ray treatment. Users should keep in mind that this is NOT for optical design i.e., it is presumed that the user already knows the optical system that is to be analyzed.
 
-The package imports following libraries, all of which are ubiquitous. They accompany any decent Python distribution hence this package should function with virtually no dependency issues __however__ it should be noted that it is developed with `Python3.6`.
+The package imports following external libraries, all of which are ubiquitous. They accompany any decent scientific `Python` distribution hence this package should function with virtually no dependency issues __however__ it should be noted that it is developed with `Python3.6`.
 ```python
-os
 numpy
-copy
-random
 matplotlib
-mpl_toolkits
-datetime
 ```
 
 ## Getting Started
 
 ### Installation
 
-The package need not be installed as the installation scheme is not final yet. Follow these steps to start using the package.
+Follow these steps to start using the package.
 
-1. Download the package and extract it to a directory of liking - `<User directory>/PyAstroPol`.  
-2. Add `<User directory>/PyAstroPol` to the `PYTHONPATH`.  
+1. Go to the user directory where the package is to be installed.  
+`cd <User directory>`   
+Download the package using    
+`git clone https://github.com/hemanthpruthvi/PyAstroPol.git`  
+Rename the top directory from `PyAstroPol.git` to `PyAstroPol`
 
+2. Installed the required dependencies by running  
+`pip install -r requirements.txt`
+
+3. Add `<User directory>/PyAstroPol` to the `PYTHONPATH` environment variable.  
+In Windows systems, this option can be found at `Control Panel > All Control Panel Items > System > Advanced system settings > Environment Variables`   
+In Linux systems, this can be done with the command line  
+`export PYTHONPATH=<User directory>/PyAstroPol`
+
+4. Import this package to your `Python` script using   
+`import PyAstroPol`  
+or  
+`import PyAstroPol as pap`  
+or   
+`from PyAstroPol import *`
 ### Examples
 
 [PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains several examples files to demonstrate the applications of the package. They are provided in the form of `IPython` notebook and it is a good way to quick-start using the package. __They also function as the test cases__. 
@@ -72,7 +84,11 @@ plt.show()
 ```python
 MM, T = O_system.getSystemMuellerMatrix()           # Compute Mueller matrix for the system
 print(MM)
-```  
+``` 
+## Documentation
+
+Documentation on `Classes` is hosted at [ReadTheDocs](https://pyastropol.readthedocs.io/en/latest/).
+
 ## Directories
 
 [PyAstroPol/PyAstroPol/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/PyAstroPol)  
@@ -88,7 +104,8 @@ It has the refractive index data for different materials in a formatted manner. 
 6. An [example](https://github.com/hemanthpruthvi/PyAstroPol/blob/master/Examples/09_FormatMaterialFile.ipynb) is also provided.
 
 [PyAstroPol/Docs/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Docs)  
-It contains documentation related codes and files.  
+It contains documentation related codes and files.
+`Theory_and_Implementation_Notes.ipynb` details the formulation behind the codes. __Users interested in development are encouraged to refer this document__.
 
 ## Conventions used in this package  
 The most important aspect to remember while using the package is __the convention__, which is described below. 
@@ -101,7 +118,7 @@ Positive Hour Angle : West
 Positive Declination : North  
 ### For optics : 
 Complex refractive index is __n-__*i*__k__ where __n__ and __k__ are positive real numbers.    
-Jones vectors corresponding to positive Stokes-V are <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{\sqrt 2} \begin{bmatrix} 1 \\ 0 \end{bmatrix}"> and <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{\sqrt 2} \begin{bmatrix} 0 \\ -i \end{bmatrix}">. 
+Jones vector corresponding to positive Stokes-V is <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{\sqrt 2} \begin{bmatrix} 1 \\ -i \end{bmatrix}">.
 
 ## Contributing
 Any mode of contribution is highly encouraged.

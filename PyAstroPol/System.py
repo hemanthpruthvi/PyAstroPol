@@ -78,7 +78,7 @@ class System():
         |  [M_20, M_21, M_22, M_23] = Out_3 - 0.5*(Out_1 + Out_2)
         |  [M_30, M_31, M_32, M_33] = Out_4 - 0.5*(Out_1 + Out_2)
 
-        |  Returns : 4x4 Mueller matric of the System, Transmitted fractional intensity
+        |  Returns : 4x4 Mueller matrix of the System, Transmitted fractional intensity
         """
         Source, Components = self.Source, self.Components
         Ex_In = [1.0+0.0j, 0.0+0.0j, np.sqrt(0.5)+0.0j, np.sqrt(0.5)+0.0j]
