@@ -23,7 +23,9 @@ Download the package from the Github.
 `git clone https://github.com/hemanthpruthvi/PyAstroPol.git`  
 Rename the top directory from `PyAstroPol.git` to `PyAstroPol`
 
-2. Installed the required dependencies by running  
+2. Go to `PyAstroPol` root directory
+`cd <User directory/PyAstroPol>`
+Install the required dependencies by running  
 `pip install -r requirements.txt`
 
 3. Add `<User directory>/PyAstroPol` to the `PYTHONPATH` environment variable.  
@@ -32,14 +34,15 @@ In Linux systems, this can be done with the command line
 `export PYTHONPATH=<User directory>/PyAstroPol`
 
 4. Import this package to your `Python` script using   
-`import PyAstroPol as pap`  
+`import PyAstroPol as pap`
+
 ### Examples
 
-[PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains several examples files to demonstrate the applications of the package. They are provided in the form of `IPython` notebook and it is a good way to quick-start using the package. **They also function as the test cases**. 
+[PyAstroPol/Examples/](https://github.com/hemanthpruthvi/PyAstroPol/tree/master/Examples) contains several examples files to demonstrate the applications of the package. They are provided in the form of `IPython` notebooks, and running them is a good way to quick-start using the package. **They also function as the test cases**. 
 
 ### Analysis on own
 
-As previously mentioned, this is not a design software. Hence, one needs to know the optical system they wish to analyze. As per the framework of the optical system, there are thee types of objects :
+As previously mentioned, this is not a design software. Hence, one needs to know the optical system they wish to analyze. As per the framework of the `PyAstroPol` optical system, there are thee types of objects :
 1. Source  
 2. Components  
 3. Detector   
@@ -139,6 +142,7 @@ Any mode of contribution is highly encouraged.
 6. Other : Open an issue on github with a description.
 
 Kindly use appropriate Tags as well.
+
 ## TODO
 1. Add polarizing elements such as birefringent elements, waveplates and polarizers.
 2. Add feature to create and save coatings as files.
