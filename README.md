@@ -23,9 +23,9 @@ Download the package from the Github.
 `git clone https://github.com/hemanthpruthvi/PyAstroPol.git`  
 Rename the top directory from `PyAstroPol.git` to `PyAstroPol`
 
-2. Go to `PyAstroPol` root directory
-`cd <User directory/PyAstroPol>`
-Install the required dependencies by running  
+2. Go to `PyAstroPol` root directory  
+`cd <User directory/PyAstroPol>`  
+Install the required dependencies by running    
 `pip install -r requirements.txt`
 
 3. Add `<User directory>/PyAstroPol` to the `PYTHONPATH` environment variable.  
