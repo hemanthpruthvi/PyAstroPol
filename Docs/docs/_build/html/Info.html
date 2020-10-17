@@ -25,7 +25,6 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -84,10 +83,9 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">About the Package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#salient-features">Salient features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#important-limitations">Important Limitations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#keywords">Keywords</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="PyAstroPol.html">PyAstroPol package</a></li>
@@ -157,9 +155,29 @@
             
   <div class="section" id="about-the-package">
 <h1>About the Package<a class="headerlink" href="#about-the-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>The package <code class="docutils literal notranslate"><span class="pre">PyAstroPol</span></code> provides a simple way to perform instrumental polarization analysis of the astronomical optics. The package has one simple goal: compute 4x4 Mueller matrix for the given optical system. It is developed keeping astronomical optics in view. The geomatric optics approach is used in the package hence all the analysis uses strictly ray treatment. Users should keep in mind that the software is NOT for the optical design purposes i.e., it is presumed that the user already knows the optical system that is to be analyzed.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Python</span></code> package <code class="docutils literal notranslate"><span class="pre">PyAstroPol</span></code> provides a simple way to perform instrumental polarization analysis of the astronomical optics. The package has one simple goal: compute 4x4 Mueller matrix for the given optical system. It is developed keeping astronomical optics in view. The geometric optics approach is used in the package hence all the analysis uses strictly ray treatment. Users should keep in mind that the software is NOT for the optical design purposes i.e., it is presumed that the user already knows the optical system that is to be analyzed. As it has minimal dependencies it can be easily used, or integrated/distributed with polarization calibration routines of the users.</p>
+<p><code class="docutils literal notranslate"><span class="pre">PyAstroPol</span></code> aims to provide better aspects of the existing polarization analysis approaches: open-source tools developed using scientific programming language, with a range of applications in modelling the astronomical optics.  A variety of examples have been provided, and they should facilitate the quick-start. One of the examples also provides the comparison of the results with those of a popular commercial software Zemax OpticStudio®.</p>
+<div class="section" id="salient-features">
+<h2>Salient features<a class="headerlink" href="#salient-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Calculation of the Mueller matrix of a given optical system is a simple and only end goal. Rest are the by-products of such analysis. The system Mueller matrix is computed by coherently adding the electric field vectors after propagation. It implies that the system is imaging type, which is commonplace in astronomy.</p></li>
+<li><p>Astronomical sources can be directly placed in the model using relevant coordinates, namely, declination, hour angle and latitude of the telescope site.</p></li>
+<li><p>Off-axis components are facilitated, as they have a significant effect on polarization.</p></li>
+<li><p>Effect of multi-layered coatings, such as oxide layers and protective coatings, on the state of polarization, is included. These are also significant in the polarization analysis of the astronomical optics.</p></li>
+<li><p>All the data, such as points of incidence, polarization directions, complex electric field values and more, are readily available to the user for any further analysis.</p></li>
+<li><p>Material refractive index information can be downloaded from the popular online source <a class="reference external" href="https://refractiveindex.info/">RefractiveIndexInfo</a> as <code class="docutils literal notranslate"><span class="pre">.csv</span></code>. It can be formatted and used with this software.</p></li>
+<li><p>Spot diagram is possible at any instance, as a by-product of ray tracing.</p></li>
+</ul>
+</div>
+<div class="section" id="important-limitations">
+<h2>Important Limitations<a class="headerlink" href="#important-limitations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>All the analysis uses strictly the ray treatment. Hence, all the limitations of the rays optics shall be applicable.</p></li>
+<li><p>Only circular optics (apertures) can be devised at the moment.</p></li>
+<li><p>Incidentally, birefringent components are not included yet. The justification for this choice is that the behaviour of the birefringent components is fairly straightforward as they strongly polarize the light.</p></li>
+<li><p>The visualization features are limited.</p></li>
+<li><p>It is neither a design software nor interactive. That is, the user must know the optical system that is to be analyzed, and the system must be updated every time a component is changed.</p></li>
+</ul>
 </div>
 <div class="section" id="keywords">
 <h2>Keywords<a class="headerlink" href="#keywords" title="Permalink to this headline">¶</a></h2>
@@ -175,49 +193,6 @@
 <div class="line">Polarized ray tracing</div>
 <div class="line">Mueller matrix</div>
 </div>
-</div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>The package has minimal dependencies that accompany any decent scientific Python distribution. Hence, I believe that the package should function with virtually no dependency issues. However, it should be noted that it is developed with <code class="docutils literal notranslate"><span class="pre">Python3.6</span></code>. Install these packages using the provided file <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.
-Follow these steps to start using the package.</p>
-<div class="line-block">
-<div class="line">1. Go to the selected user directory, with the coomand line <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&lt;User</span> <span class="pre">directory&gt;</span></code></div>
-<div class="line-block">
-<div class="line">Download the package using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/hemanthpruthvi/PyAstroPol.git</span></code></div>
-<div class="line">Rename the directory from <code class="docutils literal notranslate"><span class="pre">PyAstroPol.git</span></code> to <code class="docutils literal notranslate"><span class="pre">PyAstroPol</span></code></div>
-<div class="line"><br /></div>
-<div class="line">Alternatively, download the package as <code class="docutils literal notranslate"><span class="pre">zip</span></code> from <code class="docutils literal notranslate"><span class="pre">https://github.com/hemanthpruthvi/PyAstroPol</span></code></div>
-<div class="line">Extract it to the selected user directory directory as <code class="docutils literal notranslate"><span class="pre">&lt;User</span> <span class="pre">directory&gt;/PyAstroPol</span></code></div>
-<div class="line"><br /></div>
-</div>
-<div class="line">2. Add <code class="docutils literal notranslate"><span class="pre">&lt;User</span> <span class="pre">directory&gt;/PyAstroPol</span></code> to the <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> environronment variable.</div>
-<div class="line-block">
-<div class="line">In Windows systems, this option can be found at <code class="docutils literal notranslate"><span class="pre">Control</span> <span class="pre">Panel</span> <span class="pre">&gt;</span> <span class="pre">All</span> <span class="pre">Control</span> <span class="pre">Panel</span> <span class="pre">Items</span> <span class="pre">&gt;</span> <span class="pre">System</span> <span class="pre">&gt;</span> <span class="pre">Advanced</span> <span class="pre">system</span> <span class="pre">settings</span> <span class="pre">&gt;</span> <span class="pre">Environment</span> <span class="pre">Variables</span></code></div>
-<div class="line">In Linux systems, this can be done with the command line <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PYTHONPATH=&lt;User</span> <span class="pre">directory&gt;/PyAstroPol</span></code></div>
-<div class="line"><br /></div>
-</div>
-<div class="line">3. Import this package to your <code class="docutils literal notranslate"><span class="pre">Python</span></code> script using <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">PyAstroPol</span></code></div>
-</div>
-</div>
-<div class="section" id="conventions">
-<h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
-<p>The most important aspect to remember while using the package is the convention, which is described below.</p>
-<dl>
-<dt>Astronomy</dt><dd><div class="line-block">
-<div class="line">Positive X-axis : West</div>
-<div class="line">Positive Y-axis : Zenith</div>
-<div class="line">Positive Z-axis : North</div>
-<div class="line">Positive Latitude : North</div>
-<div class="line">Positive Hour Angle : West</div>
-<div class="line">Positive Declination : North</div>
-</div>
-</dd>
-<dt>Optics</dt><dd><div class="line-block">
-<div class="line">Complex refractive index is <strong>n</strong>-<em>i</em>.**k** where <strong>n</strong> and <strong>k</strong> are positive real numbers.</div>
-<div class="line">Jones vector corresponding to positive Stokes-V is <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ -i \end{bmatrix}\)</span></div>
-</div>
-</dd>
-</dl>
 </div>
 </div>
 
