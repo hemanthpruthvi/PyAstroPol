@@ -1,14 +1,12 @@
-# import numpy as np
-# from matplotlib import pyplot as plt
-# from mpl_toolkits.mplot3d import Axes3D
-# import random as rd
-# import copy as cp
-# from datetime import datetime as dt
-
-from .System import *
-from .Source import *
-from .Surface import *
-from .Coating import *
-from .Elements import *
-from .Material import *
-from .Functions import *
+from .System import System
+from .Source import Rays, Source, AstroSource
+from .Surface import Surface
+from .Coating import Coating
+from .Elements import Detector, UncoatedLens
+from .Material import Material
+#
+from .Functions import adjustAspect
+from .Functions import MuellerRotationMatrix
+from .Functions import rotateMuellerMatrix
+from .Functions import roundOffDisplay
+from .Functions import formatMaterialFile

@@ -13,7 +13,6 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 #
 import numpy as np
 import matplotlib
-# matplotlib.use('TkAgg') # Uncomment it when building the documentation!
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 EPS = 1e-30 
