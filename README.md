@@ -16,6 +16,12 @@ matplotlib
 
 ### Installation
 
+The package has following distinct components :
+1. *Code Base*: The directory `PyAstroPol/PyAstroPol`. It containes source code of the packge that is only accessed by the application and not by the user.
+2. *User Data*: The directories `PyAstroPol/Examples` and `PyAstroPol/Materials`. They contain data pertaining to the package that user should be able to access, which may also be used by the application in the runtime.
+
+The present *installation* scheme is outlined below. The users are requested to provide their valuable feedback about the preferences regarding the installation (e.g., having two directories for root and user data, installing in development mode etc.). This will be of great help in devising a better installation scheme for the next versions. 
+
 Follow these steps to start using the package.
 
 1. Go to the user directory where the package is to be installed.  
