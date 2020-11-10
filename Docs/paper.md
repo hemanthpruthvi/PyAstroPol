@@ -36,25 +36,25 @@ In the polarization analysis of the astronomical telescopes, various approaches 
 
 Salient features :   
 
-+ `PyAstroPol` calculates the Mueller matrix of a given imaging-type optical system, by coherently adding the electric field vectors after propagation. 
-+ Astronomical sources can be directly placed in the model using relevant coordinates, namely, declination, hour angle and latitude of the telescope site.   
-+ Off-axis components are included, as they have a significant effect on polarization.   
-+ Effect of multi-layered coatings, such as oxide layers and protective coatings, on the state of polarization is included. These are also significant in the polarization analysis of the astronomical optics (e.g., @VanHarten_2009).   
-+ All the data, such as points of incidence, polarization directions, complex electric field values and more, are readily available to the user for any further analysis.   
-+ Material refractive index information can be downloaded from the popular online source [https://refractiveindex.info/](https://refractiveindex.info/) as `.csv`. It can be formatted and used with this software.   
-+ Spot diagram is possible at any instance of the beam path, as a by-product of ray tracing.
+* `PyAstroPol` calculates the Mueller matrix of a given imaging-type optical system, by coherently adding the electric field vectors after propagation. 
+* Astronomical sources can be directly placed in the model using relevant coordinates, namely, declination, hour angle and latitude of the telescope site.   
+* Off-axis components are included, as they have a significant effect on polarization.   
+* Effect of multi-layered coatings, such as oxide layers and protective coatings, on the state of polarization is included. These are also significant in the polarization analysis of the astronomical optics (e.g., @VanHarten_2009).   
+* All the data, such as points of incidence, polarization directions, complex electric field values and more, are readily available to the user for any further analysis.   
+* Material refractive index information can be downloaded from the popular online source [https://refractiveindex.info/](https://refractiveindex.info/) as `.csv`. It can be formatted and used with this software.   
+* Spot diagram is possible at any instance of the beam path, as a by-product of ray tracing.
 
 Important Limitations :   
-- All the analysis uses strictly the ray treatment. Hence, all the limitations of the rays optics shall be applicable.   
-- Only circular optics (apertures) can be modelled at the moment.   
-- Birefringent components are not included yet. The justification for this choice is that the behaviour of the birefringent components is fairly straightforward as they strongly polarize the light.   
-- The visualization features are limited.
-- `PyAstroPol` is neither a design software nor interactive. That is, the user must know the optical system that is to be analyzed, and the system must be updated every time a component is changed.
+* All the analysis uses strictly the ray treatment. Hence, all the limitations of the rays optics shall be applicable.   
+* Only circular optics (apertures) can be modelled at the moment.   
+* Birefringent components are not included yet. The justification for this choice is that the behaviour of the birefringent components is fairly straightforward as they strongly polarize the light.   
+* The visualization features are limited.
+* `PyAstroPol` is neither a design software nor interactive. That is, the user must know the optical system that is to be analyzed, and the system must be updated every time a component is changed.
 
 Results of the code have been verified against previous works (@Pruthvi_2018), and Zemax OpticStudio&reg;. A variety of examples have been provided, and they should facilitate the quick-start. One of the examples also provides the aforementioned comparison with commercial software. 
 
 # Acknowledgements
 
-This work has been carried out as a part of the ongoing project _Jets in the solar atmosphere_, funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – Projektnummer 407727365. I thank DVS Phanindra (IIA, Bengaluru) and V. Sreekanth Reddy (CHESS, Hyderabad) for the discussion, and Mathias Waidele (KIS, Freiburg) for his feedback. I also thank the PI of the DFG project Markus Roth (KIS, Freiburg) for the opportunity to carry out this work. 
+This work has been carried out as a part of the ongoing project _Jets in the solar atmosphere_, funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – Projektnummer 407727365. I thank DVS Phanindra (IIA, Bengaluru) and V. Sreekanth Reddy (CHESS, Hyderabad) for the discussion, and Mathias Waidele (KIS, Freiburg) for his feedback. I also thank the PI of the DFG project Markus Roth (KIS, Freiburg) for the opportunity to carry out this work. I thank reviewers [caldarolamartin](https://github.com/caldarolamartin), [aquilesC](https://github.com/aquilesC) and [mwcraig](https://github.com/mwcraig), and editor [pibion](https://github.com/pibion) for their valuable feedback in improving this package. 
 
 # References
