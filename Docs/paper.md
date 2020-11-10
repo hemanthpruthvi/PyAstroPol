@@ -45,11 +45,12 @@ Salient features :
 * Spot diagram is possible at any instance of the beam path, as a by-product of ray tracing.
 
 Important Limitations :   
-* All the analysis uses strictly the ray treatment. Hence, all the limitations of the rays optics shall be applicable.   
-* Only circular optics (apertures) can be modelled at the moment.   
-* Birefringent components are not included yet. The justification for this choice is that the behaviour of the birefringent components is fairly straightforward as they strongly polarize the light.   
-* The visualization features are limited.
-* `PyAstroPol` is neither a design software nor interactive. That is, the user must know the optical system that is to be analyzed, and the system must be updated every time a component is changed.
+
+* All the analysis uses strictly the ray treatment. Hence, all the limitations of the rays optics shall be applicable.     
+* Only circular optics (apertures) can be modelled at the moment.     
+* Birefringent components are not included yet. The justification for this choice is that the behaviour of the birefringent components is fairly straightforward as they strongly polarize the light.     
+* The visualization features are limited.    
+* `PyAstroPol` is neither a design software nor interactive. That is, the user must know the optical system that is to be analyzed, and the system must be updated every time a component is changed.     
 
 Results of the code have been verified against previous works (@Pruthvi_2018), and Zemax OpticStudio&reg;. A variety of examples have been provided, and they should facilitate the quick-start. One of the examples also provides the aforementioned comparison with commercial software. 
 
