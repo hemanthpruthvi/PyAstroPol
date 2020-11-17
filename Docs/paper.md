@@ -28,7 +28,7 @@ The instrumental polarization analysis is one of the key aspects of the optical 
 # Summary
 
 The Python package `PyAstroPol` provides a means to analyze the polarization properties of a given optical system with relative ease and minimal dependencies. The simple end goal is to calculate the Mueller matrix (e.g., @Gil_2016) of the optical system.  
-It can be easily distributed along with the polarimetric calibration routines.
+Data pipelines of the astronomical instruments can easily distribute this package alongside their polarimetric calibration routines.
 
 In the polarization analysis of the astronomical telescopes, various approaches have been adopted depending on the complexity of the system. A significant part of the complexity is because the instrumental polarization is often time-dependent. For the solar telescopes with Coelostats, Mueller matrices were analytically derived as a function of time (e.g., @KTT_1985, @VTT_2005). For Thirty Meter Telescope (TMT), a combination of analytical and numerical methods is used (@TMT_2015). However, for Daniel K. Inouye Solar Telescope (DKIST), Zemax – a commercial software – is used, along with the team's in-house tools (@DKIST_2016).
 
