@@ -3,6 +3,8 @@ Instrumental Polarization Analysis of Astronomical Optics
 
 [![DOI](https://zenodo.org/badge/288481693.svg)](https://zenodo.org/badge/latestdoi/288481693)
 
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.02693/status.svg)](https://doi.org/10.21105/joss.02693)
+
 ## Overview
 The package has one simple goal : compute 4x4 Mueller matrix for the given optical system, and it is developed keeping astronomical optics in view.
 It uses geometric optics approach i.e., all the analysis uses strictly ray treatment. Users should keep in mind that this is NOT for optical design i.e., it is presumed that the user already knows the optical system that is to be analyzed.
