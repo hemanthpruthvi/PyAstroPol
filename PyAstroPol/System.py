@@ -111,7 +111,7 @@ class System():
         M[:,2] = Out[2,:] - 0.5*(Out[0,:] + Out[1,:])
         M[:,3] = Out[3,:] - 0.5*(Out[0,:] + Out[1,:])
         self.MuellerMatrix = np.matrix(M/M[0,0])
-        self.Transmission = M[0,0]/float(Source.NRays)**2
+        self.Transmission = M[0,0]/np.float64(Source.NRays)**2
         return self.MuellerMatrix, self.Transmission
         
     def draw(self, Ax, clear=False):
