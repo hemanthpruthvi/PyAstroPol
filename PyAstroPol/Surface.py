@@ -51,7 +51,7 @@ class Surface():
     """
     def __init__(self, Dia, R=np.inf, K=0, Mirror=False, iDia=0.0,
                  OffAxis=False, OffAxDist=0.0, OffAxAz=0.0, 
-                 n1=1.0+0.0j, n2=1.5+0.0j):
+                 n1=1.0+0.0j, n2=1.5+0.0j, Interference=False):
         
         # Refractive index of medium-1
         if (type(n1) == str):
@@ -75,6 +75,9 @@ class Surface():
         self.xAxis = np.array([1.0,0.0,0.0])
         self.yAxis = np.array([0.0,1.0,0.0])
         self.oAxis = np.array([0.0,0.0,1.0])
+        self.nxAxis = np.array([1.0,0.0,0.0])
+        self.nyAxis = np.array([0.0,1.0,0.0])
+        self.nzAxis = np.array([0.0,0.0,1.0])
         self.Conic, self.Curvature = K, R
         self.SurfaceMatrix = np.matrix([[1.0/R, 0.0, 0.0, 0.0],
                                         [0.0, 1.0/R, 0.0, 0.0],
@@ -83,8 +86,9 @@ class Surface():
         
         self.X, self.Y, self.Z = 0.0, 0.0, 0.0
         self.IncidentPoints = np.array([[0.0,0.0,0.0]])
-        self.Coating = Coating([],[])
-        # self.Coating = None
+        # self.Coating = Coating([],[])
+        self.Interference = Interference
+        self.Coating = None
         # Special things to do in case of off-axis surfaces
         if (OffAxis):
             if (self.Conic == 0 or self.Curvature == np.inf):
@@ -341,6 +345,11 @@ class Surface():
         TempMask = np.reshape(np.isnan(np.sum(sCosines, axis=1)), newshape=(self.iRays.NRays,1))
         self.sCosines = np.nan_to_num(sCosines) + self.iRays.xCosines*TempMask
         self.pCosines_i = np.cross(self.iRays.oCosines, self.sCosines)
+        # Compute coordinate rotation angles between XY & SP
+        DOT = np.sum(self.iRays.xCosines*self.sCosines, axis=1)
+        CROSSTemp = np.cross(self.iRays.xCosines, self.sCosines)
+        CROSS = np.sum(self.iRays.oCosines*CROSSTemp, axis=1)
+        self.CoordTheta = np.reshape(np.arctan2(CROSS, DOT), newshape=(self.iRays.NRays, 1))
         return
 
     def propagateReflectedRays(self):
@@ -372,15 +381,14 @@ class Surface():
 
     def propagatePolarization(self):
         """
-        |  Computes the effects of propagation on the state of polarization of the Rays.
+        |  Computes the effects of propagation on the state of polarization of the Rays, ignoring the interference effects
         |  Internal function for computations.
         """
-        # Compute coordinate rotation angles
-        DOT = np.sum(self.iRays.xCosines*self.sCosines, axis=1)
-        CROSSTemp = np.cross(self.iRays.xCosines, self.sCosines)
-        CROSS = np.sum(self.iRays.oCosines*CROSSTemp, axis=1)
-        Theta = np.reshape(np.arctan2(CROSS, DOT), newshape=(self.iRays.NRays, 1))
-        self.CoordTheta = Theta
+        Theta = self.CoordTheta
+        # Incident
+        Es =  self.iRays.Ex*np.cos(Theta)+self.iRays.Ey*np.sin(Theta)
+        Ep = -self.iRays.Ex*np.sin(Theta)+self.iRays.Ey*np.cos(Theta)
+
         # Coefficients of reflection and transmission
         if (self.Coating == None):
             self.rp = ((self.tRI/self.tMU)*np.cos(self.iTheta)-(self.iRI/self.iMU)*np.cos(self.tTheta)) / \
@@ -395,9 +403,6 @@ class Surface():
             self.Coating.applyToSurface(self)
             self.rs, self.ts = np.copy(self.Coating.rs), np.copy(self.Coating.ts)
             self.rp, self.tp = np.copy(self.Coating.rp), np.copy(self.Coating.tp)
-        # Incident
-        Es =  self.iRays.Ex*np.cos(Theta)+self.iRays.Ey*np.sin(Theta)
-        Ep = -self.iRays.Ex*np.sin(Theta)+self.iRays.Ey*np.cos(Theta)
         # Reflection
         Es_r, Ep_r = Es*self.rs, Ep*self.rp
         self.rRays.Ex =  Es_r*np.cos(-Theta) + Ep_r*np.sin(-Theta)
@@ -418,6 +423,23 @@ class Surface():
         self.tRays.oAxis = self.tRays.oCosines[0,:]
         return
     
+    def computeFieldMatrix(self):
+        """
+        |  Compute Snell's propagation constant for each ray i.e., n*sin(theta)
+        |  Input: DC's of the surface normals at the points of incidence
+        """
+        self.Beta = self.iRI*np.linalg.norm(np.cross(self.iRays.oCosines, self.nCosines), axis=1)
+        Eta = 0.0
+        Psi, Xi = vectorToAngles(self.sCosines.T)
+        self.Orientation = [Eta, Psi, Xi]
+        nx, ny, nz = Material(self.iMedium).getRefractiveIndicesAt(self.Wavelength)
+        self.Epsilon = getPermittivityTensor([nx,ny,nz], [Eta, Psi, Xi])
+        if (Material(self.tMedium).IsIsotropic):
+            self.FieldMatrix, self.Alpha = getBerremanFieldMatrixIsotropic(self.tRI, self.Beta)
+        else:
+            self.FieldMatrix, self.Alpha = getBerremanFieldMatrixAnisotropic(self.Epsilon, self.Beta)
+        return
+
     def loadRefractiveIndex(self, Wave):
         """
         |  Loads the refractive index for the given wavelength from Material.
@@ -442,6 +464,7 @@ class Surface():
         self.computeNormals()
         self.propagateReflectedRays()
         self.propagateTransmittedRays()
+        if (self.Interference): self.computeFieldMatrix()
         self.propagatePolarization()
         return
     
@@ -456,6 +479,7 @@ class Surface():
         z = np.reshape(self.Z, newshape=(self.thetaRes,self.rRes))
         Ax.plot_surface(x, y, z, antialiased=True, **kwargs)
         return
+    
     def drawRays(self, Ax, **kwargs):
         """
         |  Draw the Rays to the Surface after propagation.
@@ -467,6 +491,7 @@ class Surface():
             if(self.iRays.Mask[i]):
                 Ax.plot([P1[i,0], P2[i,0]], [P1[i,1], P2[i,1]], [P1[i,2], P2[i,2]], **kwargs)
         return
+    
     def drawSurfaceNormals(self, Ax, Length, **kwargs):
         """
         |  Draw the normal vectors to the Surface at the points of incidence of Rays.
@@ -478,6 +503,7 @@ class Surface():
         for i in range(len(P1)):
             Ax.plot([P1[i,0], P2[i,0]], [P1[i,1], P2[i,1]], [P1[i,2], P2[i,2]], **kwargs)
         return
+    
     def drawPolarizationDirection(self, Ax, LengthR, **kwargs):
         """
         |  Draw the s- and p-polarization directions for all the Rays at the Surface.

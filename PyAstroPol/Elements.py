@@ -126,3 +126,119 @@ class UncoatedLens():
         return
     
     
+class CompoundPlate():
+    def __init__(self, Dia, FileName, Cover='Air', Substrate='Air'):
+        self.Aperture = Dia
+        # Data = np.genfromtxt(FileName, delimiter=',', dtype=str)
+        # self.Layers = Data[:,0]
+        # self.Wavelength = 0.6328
+        # self.Stack = np.zeros([Data.shape[0],7])
+        # self.Stack[:,0] = np.float64(Data[:,1])
+        # self.Stack[:,4::] = np.float64(Data[:,2::])
+        # self.Cover=Material(Cover)
+        # self.Substrate=Material(Substrate)
+        # self.loadRefractiveIndex()
+        # self.Origin = np.array([0.0,0.0,0.0])
+        # self.xAxis = np.array([1.0,0.0,0.0])
+        # self.yAxis = np.array([0.0,1.0,0.0])
+        # self.oAxis = np.array([0.0,0.0,1.0])
+        # self.Mirror = False
+
+
+    def propagateRays(self, Rays):
+        """
+        |  Compute reflection and transmission 'matrices' for the compound coating 
+        |  Instead of a simple scalar for the coeff
+        """
+        self.iRays = cp.copy(Rays)
+        self.tRays = cp.copy(Rays)
+        self.rRays = cp.copy(Rays)
+        self.Wavelength = self.iRays.Wavelength
+        self.propagatePolarization()
+        return
+    
+    def propagatePolarization(self):
+        # # Compute coordinate rotation angles
+        # self.sCosines = normalize3DVectors(np.cross(self.iRays.oCosines, self.oAxis))
+        # self.sCosines = np.nan_to_num(self.sCosines)
+        # DOT = np.sum(self.iRays.xCosines*self.sCosines, axis=1)
+        # CROSSTemp = np.cross(self.iRays.xCosines, self.sCosines)
+        # CROSS = np.sum(self.iRays.oCosines*CROSSTemp, axis=1)
+        # Theta = np.reshape(np.arctan2(CROSS, DOT), newshape=(self.iRays.NRays, 1))
+        #
+        Theta = 0
+        self.computeBerremanCharMatrix()
+        A = self.CharMatrix
+        self.rsp = np.matrix([[A[0,0], -A[2,0]],
+                              [-A[0,2], A[2,2]]])
+        self.rsp = self.rsp/np.linalg.det(self.rsp)
+        self.tsp = np.matrix([[A[3,2], A[3,0]],
+                               [A[1,2], A[1,0]]])
+        self.tsp = self.tsp*self.rsp
+        #
+        # Incident
+        Es =  self.iRays.Ex*np.cos(Theta)+self.iRays.Ey*np.sin(Theta)
+        Ep = -self.iRays.Ex*np.sin(Theta)+self.iRays.Ey*np.cos(Theta)
+        # Reflection
+        Es_r, Ep_r = Es*self.rsp[0,0]+Ep*self.rsp[0,1], Es*self.rsp[1,0]+Ep*self.rsp[1,1] 
+        self.rRays.Ex =  Es_r*np.cos(-Theta) + Ep_r*np.sin(-Theta)
+        self.rRays.Ey = -Es_r*np.sin(-Theta) + Ep_r*np.cos(-Theta)
+        self.rRays.xCosines =  self.sCosines*np.cos(-Theta) + self.pCosines_r*np.sin(-Theta)
+        self.rRays.yCosines = -self.sCosines*np.sin(-Theta) + self.pCosines_r*np.cos(-Theta)
+        self.rRays.xAxis = self.rRays.xCosines[0,:]
+        self.rRays.yAxis = self.rRays.yCosines[0,:]
+        self.rRays.oAxis = self.rRays.oCosines[0,:]
+        # Transmission
+        Es_t, Ep_t = Es*self.tsp[0,0]+Ep*self.tsp[0,1], Es*self.tsp[1,0]+Ep*self.tsp[1,1] 
+        self.tRays.Ex =  Es_t*np.cos(-Theta) + Ep_t*np.sin(-Theta)
+        self.tRays.Ey = -Es_t*np.sin(-Theta) + Ep_t*np.cos(-Theta)
+        self.tRays.xCosines =  self.sCosines*np.cos(-Theta) + self.pCosines_t*np.sin(-Theta)
+        self.tRays.yCosines = -self.sCosines*np.sin(-Theta) + self.pCosines_t*np.cos(-Theta)
+        self.tRays.xAxis = self.tRays.xCosines[0,:]
+        self.tRays.yAxis = self.tRays.yCosines[0,:]
+        self.tRays.oAxis = self.tRays.oCosines[0,:]
+        return
+
+    def computeBerremanCharMatrix(self):
+        """
+        |  Compute the Berreman's characteristic matrix for a coated compund plate in the air
+        |  Input:  Snell's propagation constant
+        |  Output: 4x4 Berreman's characteristic matrix
+        """
+        # self.loadRefractiveIndex()
+        # self.computePropagationConstant()
+        # FM_Cover = getBerremanFieldMatrixIsotropic(self.Cover.getRefractiveIndexAt(self.Wavelength), self.Beta)
+        # FM_Substrate = getBerremanFieldMatrixIsotropic(self.Substrate.getRefractiveIndexAt(self.Wavelength), self.Beta)
+        # CharMatrix = np.linalg.inv(FM_Cover)
+        # for s in self.Stack:
+        #     Thick, nx, ny, nz, Eta, Psi, Xi = s
+        #     Epsilon_ = getPermittivityTensor([nx,ny,nz], [Eta, Psi, Xi])
+        #     FM_, Alpha_ = getBerremanFieldMatrixAnisotropic(Epsilon_, self.Beta)
+        #     PM_ = getBerremanPhaseMatrix(Alpha_, Thick)
+        #     CharMatrix = CharMatrix*FM_*PM_*np.linalg.inv(FM_)
+        # self.CharMatrix = CharMatrix*FM_Substrate
+        for s in self.Surfaces:
+            s.propagateRays()
+
+
+
+        return
+
+    def loadRefractiveIndex(self):
+        """
+        |  Load the refractive indices for all the layers for a given wavelength
+        """
+        for i, l in enumerate(self.Layers):
+            RIs = Material(l).getRefractiveIndicesAt(self.Wavelength)
+            self.Stack[i,1:4] = RIs
+
+    def computePropagationConstant(self):
+        """
+        |  Compute Snell's propagation constant for each ray i.e., n*sin(theta)
+        |  Input: DC's of the surface normals at the points of incidence
+        """
+        RI = self.Cover.getRefractiveIndexAt(self.Wavelength)
+        self.Beta = RI*np.linalg.norm(np.cross(self.iRays.oAxis, self.oAxis))
+        return
+
+
