@@ -158,6 +158,5 @@ Any mode of contribution is highly encouraged.
 Kindly use appropriate Tags as well.
 
 ## TODO
-1. Add polarizing elements such as birefringent elements, waveplates and polarizers.
-2. Add feature to create and save coatings as files.
-3. Add rectandular and elliptical apertures.
+1. Add feature to create and save coatings as files.
+2. Add rectandular and elliptical apertures.
