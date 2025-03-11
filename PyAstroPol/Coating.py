@@ -145,6 +145,6 @@ class Coating():
                 self.RI.append(RIs[0])
                 self.Stack[i,1:4] = RIs
             except:
-                self.RI.append(np.complex(l))
+                self.RI.append(complex(l))
         self.RI = np.array(self.RI)
         return
